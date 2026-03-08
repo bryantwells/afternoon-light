@@ -1,0 +1,21 @@
+name: afternoon-light-prod
+services:
+
+  web:
+    build: 
+      context: ./
+      dockerfile: Dockerfile.web
+    ports:
+      - "${HOST_PORT}:80"
+    volumes:
+      - ./web:/var/www/html
+      - ./settings.conf:/etc/nginx/conf.d/default.conf
+
+  php:
+    user: "1000:1000"
+    build: 
+      context: ./
+      dockerfile: Dockerfile.php
+    volumes:
+      - ./web:/var/www/html
+      - ./settings.ini:/usr/local/etc/php/conf.d/settings.ini
