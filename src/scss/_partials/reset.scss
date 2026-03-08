@@ -1,0 +1,58 @@
+// RESET
+// ===========================
+
+* {
+	box-sizing: border-box;
+}
+
+html {
+	font-size: var(--font-size);
+	font-family: 'Magister Mono';
+}
+
+body {
+	margin: unset;
+}
+
+h1, h2, h3 {
+	font-size: unset;
+	font-weight: unset;
+	margin: unset;
+}
+
+p {
+	margin: unset;
+}
+
+a {
+	color: unset;
+}
+
+figure {
+	margin: unset;
+}
+
+figcaption {
+	margin: unset;
+}
+
+dl {
+	margin: unset;
+}
+
+dd {
+	margin: unset;
+}
+
+summary {
+	list-style: none;
+
+	&::-webkit-details-marker {
+	display: none;
+	}
+}
+
+img {
+	width: 100%;
+	display: block;
+}

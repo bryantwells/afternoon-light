@@ -1,0 +1,12 @@
+// HOURS
+// ===========================
+
+.Hours {
+	display: grid;
+	gap: var(--space-sm);
+}
+
+.Hours-item {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+}

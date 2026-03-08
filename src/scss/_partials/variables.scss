@@ -1,0 +1,30 @@
+// VARIABLES
+// ===========================
+
+@font-face {
+    font-family: 'Magister Mono';
+    src: url('/assets/fonts/MagisterMonoST_Regular.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Magister';
+    src: url('/assets/fonts/MagisterST_Regular.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+:root {
+	--space-xs: 0.5rlh;
+	--space-sm: 1rlh;
+	--space-md: 2rlh;
+	--space-lg: 4rlh;
+
+	--font-size: 26px;
+	--font-size-sm: 0.75rem;
+	--font-size-lg: 4rem;
+}
+

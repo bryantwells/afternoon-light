@@ -20,8 +20,8 @@ fields:
         type: number
       caption:
         type: text
-  body:
-    label: Body
+  description:
+    label: Description
     type: writer
     nodes: false
     marks: [italic, link]
