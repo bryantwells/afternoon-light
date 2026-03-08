@@ -1,0 +1,41 @@
+title: Splash Page
+
+fields:
+  header:
+    label: Header
+    type: structure
+    fields:
+      image:
+        label: Image
+        type: files
+        multiple: false
+      color:
+        label: Color
+        type: color
+      x_offset:
+        label: X-Offset
+        type: number
+      y_offset:
+        label: Y-Offset
+        type: number
+      caption:
+        type: text
+  body:
+    label: Body
+    type: writer
+    nodes: false
+    marks: [italic, link]
+  hours:
+    label: Hours
+    type: structure
+    fields:
+      title:
+        label: Title
+        type: text
+      description:
+        label: Description
+        type: writer
+        nodes: false
+        marks: [italic, link]
+
+
