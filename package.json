@@ -1,0 +1,26 @@
+{
+  "scripts": {
+    "dev": "npm-run-all -p dev:*",
+    "build": "npm-run-all -p build:*",
+    "dev:ts": "chokidar 'src/ts/**/*.ts' -c 'npm run build:ts'",
+    "dev:scss": "chokidar 'src/scss/**/*.scss' -c 'npm run build:sass'",
+    "dev:static": "chokidar 'src/**' '!src/ts/**' '!src/scss/**' -c 'npm run build:static'",
+    "dev:bust-cache": "chokidar 'templates/**' -c 'ddev craft clear-caches/compiled-templates'",
+    "build:ts": "node esbuild.config.mjs",
+    "build:sass": "sass src/scss/main.scss web/assets/css/main.css",
+    "build:static": "rsync -a --delete --exclude 'ts/' --exclude 'scss/' --exclude 'css/' src/ web/assets/"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.30.1",
+    "@types/node": "^24.0.3",
+    "chokidar-cli": "^3.0.0",
+    "copyfiles": "^2.4.1",
+    "esbuild": "^0.25.5",
+    "eslint": "^9.30.1",
+    "globals": "^16.3.0",
+    "npm-run-all": "^4.1.5",
+    "sass": "^1.62.0",
+    "typescript": "^5.8.3",
+    "typescript-eslint": "^8.35.1"
+  }
+}
