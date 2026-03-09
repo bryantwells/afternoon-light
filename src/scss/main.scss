@@ -1,9 +1,126 @@
 @use './_partials/reset.scss';
 @use './_partials/variables.scss';
-
-@use './_components/footer.scss';
-@use './_components/header.scss';
-@use './_components/hours.scss';
-@use './_components/page.scss';
-
 @use './_partials/utilities.scss';
+
+// BACKGROUND
+// ===========================
+
+.Background {
+	position: fixed;
+	top: 0; left: 0;
+	width: 100%; height: 100%;
+	z-index: -1;
+}
+
+.Background-image {
+	width: 100%; height: 100%;
+	object-fit: cover;
+	transition: opacity 1s;
+}
+
+// HEADER
+// ===========================
+
+.Header {
+	font-family: 'Magister';
+	font-size: var(--font-size-lg);
+	position: relative;
+	line-height: 1;	
+
+	&--main {
+		height: 100dvh;
+	}
+}
+
+.Header-title,
+.Header-shadow {	
+	padding: var(--space-md);
+	display: flex;
+	text-align: center;
+	flex-direction: column;
+	justify-content: space-between;
+	height: 100%;
+}
+
+
+.Header-title {
+	position: relative;
+	z-index: 1;
+}
+
+.Header-shadow {
+	position: absolute;
+	top: 0; left: 0;
+	width: 100%;
+	color: transparent;
+	text-shadow: var(--x-offset) var(--y-offset) 10px var(--theme-color);
+	mix-blend-mode: darken;
+	z-index: 0;
+}
+
+// SECTION
+// ===========================
+
+.Section {
+	padding: var(--space-md);
+	position: relative;
+	z-index: 1;
+	margin: auto;
+}
+
+.Section-container {
+	display: grid;
+	gap: var(--space-sm);
+	color: white;
+	align-items: start;
+	align-content: start;
+}
+
+// HOURS
+// ===========================
+
+.Hours {
+	display: grid;
+	gap: var(--space-sm);
+}
+
+.Hours-item {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: var(--space-md);
+}
+
+// FORM
+// ===========================
+
+.Form {
+	display: flex;
+	gap: var(--space-xs);
+}
+
+.Form-input {
+	flex: 1;
+	background-color: white;
+	border: 2px solid white;
+	padding: 0.25rem 0.5rem;
+	border-radius: 0.25rem;
+	max-width: 60ch;
+	box-shadow: inset 0.25rem 0.25rem 10px rgba(0,0,0,0.25);
+	color: var(--theme-color);
+}
+
+.Form-button {
+	padding: 0.25rem 0.5rem;
+	background-color: white;
+	color: var(--theme-color);
+	border-radius: 0.25rem;
+}
+
+// FOOTER
+// ===========================
+
+.Footer {
+	padding: var(--space-md);
+	padding-top: var(--space-lg);
+	font-size: var(--font-size-sm);
+}

@@ -1,3 +1,7 @@
+::selection {
+  color: black;
+}
+
 * {
   box-sizing: border-box;
 }
@@ -5,6 +9,8 @@
 html {
   font-size: var(--font-size);
   font-family: "Magister Mono";
+  color: white;
+  background-color: black;
 }
 
 body {
@@ -41,6 +47,24 @@ dd {
   margin: unset;
 }
 
+input {
+  display: block;
+  background: unset;
+  outline: unset;
+  border: unset;
+  font: unset;
+  color: unset;
+}
+
+button {
+  display: inline-block;
+  background: unset;
+  outline: unset;
+  border: unset;
+  font: unset;
+  color: unset;
+}
+
 summary {
   list-style: none;
 }
@@ -68,41 +92,22 @@ img {
   font-display: swap;
 }
 :root {
-  --space-xs: 0.5rlh;
+  --space-xs: 0.25rlh;
   --space-sm: 1rlh;
   --space-md: 2rlh;
   --space-lg: 4rlh;
-  --font-size: 26px;
+  --space-xl: 8rlh;
+  --font-size: 22px;
   --font-size-sm: 0.75rem;
-  --font-size-lg: 4rem;
+  --font-size-lg: 5rem;
 }
 
-.Footer {
-  color: var(--theme-color);
-  margin-top: var(--space-lg);
-  padding: var(--space-sm);
-  padding-top: 0;
+.u-bodyText p + p {
+  margin-top: 1rlh;
 }
 
-.Header {
-  height: 100dvh;
-  display: flex;
-  text-align: center;
-  flex-direction: column;
-  justify-content: space-between;
-  position: relative;
-  color: white;
-  padding: var(--space-md);
-}
-
-.Header-title, .Header-subtitle {
-  font-family: "Magister";
-  font-size: var(--font-size-lg);
-  line-height: 1;
-}
-
-.Header-figure {
-  position: absolute;
+.Background {
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
@@ -110,19 +115,62 @@ img {
   z-index: -1;
 }
 
-.Header-image {
+.Background-image {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  transition: opacity 1s;
 }
 
-.Header-caption {
+.Header {
+  font-family: "Magister";
+  font-size: var(--font-size-lg);
+  position: relative;
+  line-height: 1;
+}
+.Header--main {
+  height: 100dvh;
+}
+
+.Header-title,
+.Header-shadow {
+  padding: var(--space-md);
+  display: flex;
+  text-align: center;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.Header-title {
+  position: relative;
+  z-index: 1;
+}
+
+.Header-shadow {
   position: absolute;
-  top: 100%;
+  top: 0;
   left: 0;
-  color: var(--theme-color);
-  padding: var(--space-xs) var(--space-sm);
-  font-size: var(--font-size-sm);
+  width: 100%;
+  color: transparent;
+  text-shadow: var(--x-offset) var(--y-offset) 10px var(--theme-color);
+  mix-blend-mode: darken;
+  z-index: 0;
+}
+
+.Section {
+  padding: var(--space-md);
+  position: relative;
+  z-index: 1;
+  margin: auto;
+}
+
+.Section-container {
+  display: grid;
+  gap: var(--space-sm);
+  color: white;
+  align-items: start;
+  align-content: start;
 }
 
 .Hours {
@@ -133,25 +181,36 @@ img {
 .Hours-item {
   display: grid;
   grid-template-columns: 1fr 1fr;
+  gap: var(--space-md);
 }
 
-.Page {
+.Form {
+  display: flex;
+  gap: var(--space-xs);
+}
+
+.Form-input {
+  flex: 1;
+  background-color: white;
+  border: 2px solid white;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  max-width: 60ch;
+  box-shadow: inset 0.25rem 0.25rem 10px rgba(0, 0, 0, 0.25);
   color: var(--theme-color);
-  margin-top: calc(var(--space-lg) + 1rlh + var(--space-xs));
-  padding: 0 var(--space-sm);
-  display: grid;
-  gap: var(--space-lg);
 }
 
-.Page-footer {
-  font-family: "Magister";
-  font-size: var(--font-size-lg);
-  line-height: 1;
-  text-align: center;
+.Form-button {
+  padding: 0.25rem 0.5rem;
+  background-color: white;
+  color: var(--theme-color);
+  border-radius: 0.25rem;
 }
 
-.u-bodyText p + p {
-  margin-top: 1rlh;
+.Footer {
+  padding: var(--space-md);
+  padding-top: var(--space-lg);
+  font-size: var(--font-size-sm);
 }
 
 /*# sourceMappingURL=main.css.map */

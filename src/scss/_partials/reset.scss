@@ -1,6 +1,10 @@
 // RESET
 // ===========================
 
+::selection {
+	color: black;
+}
+
 * {
 	box-sizing: border-box;
 }
@@ -8,6 +12,8 @@
 html {
 	font-size: var(--font-size);
 	font-family: 'Magister Mono';
+	color: white;
+	background-color: black;
 }
 
 body {
@@ -42,6 +48,24 @@ dl {
 
 dd {
 	margin: unset;
+}
+
+input {
+	display: block;
+	background: unset;
+	outline: unset;
+	border: unset;
+	font: unset;
+	color: unset;
+}
+
+button {
+	display: inline-block;
+	background: unset;
+	outline: unset;
+	border: unset;
+	font: unset;
+	color: unset;
 }
 
 summary {

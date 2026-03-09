@@ -15,13 +15,15 @@ fields:
       x_offset:
         label: X-Offset
         type: number
+        step: .01
       y_offset:
         label: Y-Offset
         type: number
+        step: .01
       caption:
         type: text
-  description:
-    label: Description
+  event_description:
+    label: Event Description
     type: writer
     nodes: false
     marks: [italic, link]
@@ -37,5 +39,11 @@ fields:
         type: writer
         nodes: false
         marks: [italic, link]
+  venue_description:
+    label: Venue Description
+    type: writer
+    nodes: false
+    marks: [italic, link]
+
 
 
