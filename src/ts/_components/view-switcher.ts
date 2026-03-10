@@ -36,7 +36,7 @@ export class ViewSwitcher extends HTMLElement {
 	}
 
 	init() {
-		this.addEventListeners();
+		// this.addEventListeners();
 	}
 
 	addEventListeners() {
@@ -49,19 +49,12 @@ export class ViewSwitcher extends HTMLElement {
 	update() {
 		const image = new Image();
 		image.addEventListener('load', () => {
-			this.background.addEventListener('transitionend', this.swapBackground.bind(this));
-			this.background.style.opacity = '0';
+			this.background.src = this.activeHeader.imageUrl;
+			this.style.setProperty('--theme-color', this.activeHeader.color);
+			this.style.setProperty('--x-offset', `${this.activeHeader.xOffset}em`);
+			this.style.setProperty('--y-offset', `${this.activeHeader.yOffset}em`);
 		});
 		image.src = this.activeHeader.imageUrl;
-	}
-
-	swapBackground() {
-		this.background.removeEventListener('transitionend', this.swapBackground);
-		this.background.src = this.activeHeader.imageUrl;
-		this.style.setProperty('--theme-color', this.activeHeader.color);
-		this.style.setProperty('--x-offset', `${this.activeHeader.xOffset}em`);
-		this.style.setProperty('--y-offset', `${this.activeHeader.yOffset}em`);
-		this.background.style.opacity = '1';
 	}
 
 	get index(): number {

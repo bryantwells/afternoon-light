@@ -22,28 +22,15 @@ fields:
         step: .01
       caption:
         type: text
-  event_description:
-    label: Event Description
-    type: writer
-    nodes: false
-    marks: [italic, link]
-  hours:
-    label: Hours
-    type: structure
-    fields:
-      title:
-        label: Title
-        type: text
-      description:
-        label: Description
-        type: writer
-        nodes: false
-        marks: [italic, link]
-  venue_description:
-    label: Venue Description
-    type: writer
-    nodes: false
-    marks: [italic, link]
+  body:
+    label: Body
+    type: blocks
+    fieldsets:
+      - heading
+      - text
+      - table
+
+
 
 
 
