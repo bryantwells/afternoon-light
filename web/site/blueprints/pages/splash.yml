@@ -5,8 +5,12 @@ fields:
     label: Header
     type: structure
     fields:
-      image:
-        label: Image
+      desktop_image:
+        label: Desktop Image
+        type: files
+        multiple: false
+      mobile_image:
+        label: Mobile Image
         type: files
         multiple: false
       color:

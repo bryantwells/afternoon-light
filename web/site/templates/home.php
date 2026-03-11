@@ -3,7 +3,8 @@
 <?php $page = $site->pages()->template('splash')->first() ?>
 <?php $headers = $page->header()->toStructure()->shuffle() ?>
 <?php $header = $headers->first() ?>
-<?php $image = $header->image()->toFiles()->first() ?>
+<?php $mobile_image = $header->mobile_image()->toFiles()->first() ?>
+<?php $desktop_image = $header->desktop_image()->toFiles()->first() ?>
 <?php $hours = $page->hours()->toStructure() ?>
 <?php $blocks = $page->body()->toBlocks() ?>
  
@@ -17,8 +18,13 @@
 
 	<div class="Background">
 		<img 
-			class="Background-image" 
-			src="<?= $image->url() ?>" 
+			class="Background-image Background-image--mobile" 
+			src="<?= $mobile_image->url() ?>" 
+			alt="<?= $header->caption() ?>"
+		/>
+		<img 
+			class="Background-image Background-image--desktop" 
+			src="<?= $desktop_image->url() ?>" 
 			alt="<?= $header->caption() ?>"
 		/>
 	</div>
