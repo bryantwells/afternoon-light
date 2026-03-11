@@ -54,7 +54,7 @@
 	top: 0; left: 0;
 	width: 100%;
 	color: transparent;
-	text-shadow: var(--x-offset) var(--y-offset) 0.8rem var(--theme-color);
+	text-shadow: var(--x-offset) var(--y-offset) 0.175em var(--theme-color);
 	mix-blend-mode: darken;
 	z-index: 0;
 }
@@ -84,6 +84,16 @@
 	display: grid;
 	grid-template-columns: 1fr 1fr;
 	gap: var(--space-md);
+
+	@media (max-width: 600px) {
+		grid-template-columns: 1fr;
+	}
+}
+
+.Table-title {
+	@media (max-width: 600px) {
+		text-transform: uppercase;
+	}
 }
 
 // FORM

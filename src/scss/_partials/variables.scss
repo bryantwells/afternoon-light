@@ -28,9 +28,17 @@
 	--font-size-sm: 0.75rem;
 	--font-size-lg: 5rem;
 
+	@media (max-width: 1200px) {
+		--font-size: 18px;
+		--font-size-lg: 3.5rem;
+		--space-md: 1.5rlh;
+		--space-lg: 3rlh;
+		--space-xl: 6rlh;
+	}
+
 	@media (max-width: 600px) {
-		--font-size: 16px;
-		--font-size-lg: 2.5rem;
+		--font-size: 15px;
+		--font-size-lg: 3rem;
 
 		--space-md: 1rlh;
 		--space-lg: 2rlh;

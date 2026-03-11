@@ -101,10 +101,19 @@ img {
   --font-size-sm: 0.75rem;
   --font-size-lg: 5rem;
 }
+@media (max-width: 1200px) {
+  :root {
+    --font-size: 18px;
+    --font-size-lg: 3.5rem;
+    --space-md: 1.5rlh;
+    --space-lg: 3rlh;
+    --space-xl: 6rlh;
+  }
+}
 @media (max-width: 600px) {
   :root {
-    --font-size: 16px;
-    --font-size-lg: 2.5rem;
+    --font-size: 15px;
+    --font-size-lg: 3rem;
     --space-md: 1rlh;
     --space-lg: 2rlh;
     --space-xl: 4rlh;
@@ -164,7 +173,7 @@ img {
   left: 0;
   width: 100%;
   color: transparent;
-  text-shadow: var(--x-offset) var(--y-offset) 0.8rem var(--theme-color);
+  text-shadow: var(--x-offset) var(--y-offset) 0.175em var(--theme-color);
   mix-blend-mode: darken;
   z-index: 0;
 }
@@ -187,6 +196,17 @@ img {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: var(--space-md);
+}
+@media (max-width: 600px) {
+  .Table-item {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .Table-title {
+    text-transform: uppercase;
+  }
 }
 
 .Form {

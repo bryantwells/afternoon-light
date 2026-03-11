@@ -39,7 +39,7 @@
 	<?php endforeach; ?>
 
 	<section class="Block Block--form">
-		<Form class="Form--register">
+		<Form method="GET" action="https://ibxkftnv2of.typeform.com/to/MqUj2FGK?typeform-source=afternoonlight.com" target="_blank" class="Form--register">
 			<button class="Form-button">Register Interest Now</button>
 		</Form>
 	</section>
@@ -47,7 +47,7 @@
 	<footer class="Footer">
 		
 		<div class="Footer-column">
-			© 2026 Afternoon Light <a href="#">Shop</a> <a href="#">Instagram</a> <a href="#">Email List</a>
+			© 2026 Afternoon Light <a href="https://shop.afternoonlight.com">Shop</a> <a href="https://instagram.com/afternoonlight">Instagram</a> <a href="mailto:hi@afternoonlight.com">Email</a>
 		</div>
 		<div class="Footer-column">
 			Pictured: <?= $header->caption() ?>.
