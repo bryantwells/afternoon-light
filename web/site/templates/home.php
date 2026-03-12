@@ -16,17 +16,12 @@
 		--x-offset: <?= $header->x_offset() ?>em; 
 		--y-offset: <?= $header->y_offset() ?>em;">
 
-	<div class="Background">
-		<img 
-			class="Background-image Background-image--mobile" 
-			src="<?= $mobile_image->url() ?>" 
-			alt="<?= $header->caption() ?>"
-		/>
-		<img 
-			class="Background-image Background-image--desktop" 
-			src="<?= $desktop_image->url() ?>" 
-			alt="<?= $header->caption() ?>"
-		/>
+	<div 
+		class="Background"
+		style="
+			--desktop-image: url('<?= $desktop_image->url() ?>');
+			--mobile-image: url('<?= $mobile_image->url() ?>');
+		">
 	</div>
 
 	<header class="Header Header--main">

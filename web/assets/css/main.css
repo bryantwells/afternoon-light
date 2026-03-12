@@ -131,6 +131,14 @@ img {
   bottom: 0;
   right: 0;
   z-index: -1;
+  background-image: var(--desktop-image);
+  background-size: cover;
+  background-position: center;
+}
+@media (min-width: 600px) {
+  .Background {
+    background-image: var(--mobile-image);
+  }
 }
 
 .Background-image {
