@@ -53,7 +53,7 @@
 	<footer class="Footer">
 		
 		<div class="Footer-column">
-			© 2026 Afternoon Light <a href="https://shop.afternoonlight.com">Shop</a> <a href="https://instagram.com/afternoonlight">Instagram</a> <a href="mailto:hi@afternoonlight.com">Email</a>
+			© 2026 Afternoon Light <a href="https://shop.afternoonlight.com/collections/exclusives" target="_blank">Shop</a> <a href="https://instagram.com/afternoonlight" target="_blank">Instagram</a> <a href="mailto:hi@afternoonlight.com">Email</a>
 		</div>
 		<div class="Footer-column">
 			Pictured: <?= $header->caption() ?>.
