@@ -124,6 +124,18 @@ img {
   margin-top: 1rlh;
 }
 
+html, body {
+  height: 100%;
+}
+
+html {
+  overflow: hidden;
+}
+
+body {
+  overflow: scroll;
+}
+
 .Background {
   position: fixed;
   top: 0;
@@ -131,14 +143,6 @@ img {
   bottom: 0;
   right: 0;
   z-index: -1;
-  background-image: var(--desktop-image);
-  background-size: cover;
-  background-position: center;
-}
-@media (min-width: 600px) {
-  .Background {
-    background-image: var(--mobile-image);
-  }
 }
 
 .Background-image {

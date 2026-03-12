@@ -16,13 +16,18 @@
 		--x-offset: <?= $header->x_offset() ?>em; 
 		--y-offset: <?= $header->y_offset() ?>em;">
 
-	<div 
-		class="Background"
-		style="
-			--desktop-image: url('<?= $desktop_image->url() ?>');
-			--mobile-image: url('<?= $mobile_image->url() ?>');
-		">
-	</div>
+	<style>
+		html {
+			background-image: url('<?= $mobile_image->url() ?>');
+			background-size: cover;
+			background-position: center;
+
+			@media (min-width: 600px) {
+				background-image: url('<?= $desktop_image->url() ?>');
+			}
+
+		}
+	</style>
 
 	<header class="Header Header--main">
 		<div class="Header-text">
