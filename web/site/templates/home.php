@@ -32,11 +32,11 @@
 	<header class="Header Header--main">
 		<div class="Header-text">
 			<h1>Afternoon Light<br>Design Fair</h1>
-			<h2>May 17–19, 2026<br>NYC</h2>
+			<h2>May 16–19, 2026<br>NYC</h2>
 		</div>
 		<div class="Header-shadow">
 			<div>Afternoon Light<br>Design Fair</div>
-			<div>May 17–19, 2026<br>NYC</div>
+			<div>May 16–19, 2026<br>NYC</div>
 		</div>
 	</header>
 
@@ -45,15 +45,15 @@
 	<?php endforeach; ?>
 
 	<section class="Block Block--form">
-		<Form method="GET" action="https://ibxkftnv2of.typeform.com/to/MqUj2FGK?typeform-source=afternoonlight.com" target="_blank" class="Form--register">
-			<button class="Form-button">Register Interest Now</button>
+		<Form method="GET" action="https://afternoonlight.artsvp.com/a57962?link=alweb" target="_blank" class="Form--register">
+			<button class="Form-button">Get Tickets</button>
 		</Form>
 	</section>
 
 	<footer class="Footer">
 		
 		<div class="Footer-column">
-			© 2026 Afternoon Light <a href="https://shop.afternoonlight.com/collections/exclusives" target="_blank">Shop</a> <a href="https://instagram.com/afternoonlight" target="_blank">Instagram</a> <a href="mailto:hi@afternoonlight.com">Email</a>
+			© 2026 Afternoon Light <a href="https://shop.afternoonlight.com/collections/exclusives" target="_blank">Shop</a> <a href="https://instagram.com/afternoonlight" target="_blank">Instagram</a> <a href="mailto:hi@afternoonlight.com">Contact</a> <a href="https://20a4045b.sibforms.com/serve/MUIFAMFhR8jPwKzEfSTnE4IoPmemhCo6Y0ISGg34DVTC6c-CdZC0UO3VqaQbbyKAB-I67X7vWhNkN6v8Bp69VzhVtmiiaSrVDXnp2yllmigbGUssTNaoSrSYeTVET_ohJ-FKDawXjmMkP52QgiooB_nbB14j8vmy1qKA3DoatD1NGd_M8hmlfu3HxVn5CNNILPF6xRsO8RW4NQBg3A==">Subscribe</a>
 		</div>
 		<div class="Footer-column">
 			Pictured: <?= $header->caption() ?>.
