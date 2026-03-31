@@ -21,14 +21,6 @@ body {
 	position: fixed;
 	top: 0; left: 0; bottom: 0; right: 0;
 	z-index: -1;
-	// background-image: var(--desktop-image);
-	// background-size: cover;
-	// background-position: center;
-
-	// @media (min-width: 600px) {
-	// 	background-image: var(--mobile-image);
-	// }
-
 }
 
 .Background-image {
@@ -107,10 +99,25 @@ body {
 	&--exhibitors {
 
 		display: grid;
+		gap: var(--space-sm);
 		grid-template-columns: 1fr 2fr;
+
+		.Block-header {
+			@media (max-width: 600px) {
+				text-transform: uppercase;
+			}
+		}
 
 		.Block-body {
 			columns: 2;
+
+			@media (max-width: 600px) {
+				columns: 1;
+			}
+		}
+
+		@media (max-width: 600px) {
+			grid-template-columns: 1fr;
 		}
 	}
 }

@@ -212,10 +212,26 @@ body {
 }
 .Block--exhibitors {
   display: grid;
+  gap: var(--space-sm);
   grid-template-columns: 1fr 2fr;
+}
+@media (max-width: 600px) {
+  .Block--exhibitors .Block-header {
+    text-transform: uppercase;
+  }
 }
 .Block--exhibitors .Block-body {
   columns: 2;
+}
+@media (max-width: 600px) {
+  .Block--exhibitors .Block-body {
+    columns: 1;
+  }
+}
+@media (max-width: 600px) {
+  .Block--exhibitors {
+    grid-template-columns: 1fr;
+  }
 }
 
 .Table {
