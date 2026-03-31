@@ -210,6 +210,13 @@ body {
   padding: 0;
   margin: var(--space-lg) 0;
 }
+.Block--exhibitors {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+}
+.Block--exhibitors .Block-body {
+  columns: 2;
+}
 
 .Table {
   display: grid;
