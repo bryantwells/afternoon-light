@@ -53,7 +53,7 @@
 	<footer class="Footer">
 		
 		<div class="Footer-column">
-			© 2026 Afternoon Light <a href="https://shop.afternoonlight.com/collections/exclusives" target="_blank">Shop</a> <a href="https://instagram.com/afternoonlight" target="_blank">Instagram</a> <a href="mailto:hi@afternoonlight.com">Contact</a> <a href="https://20a4045b.sibforms.com/serve/MUIFAMFhR8jPwKzEfSTnE4IoPmemhCo6Y0ISGg34DVTC6c-CdZC0UO3VqaQbbyKAB-I67X7vWhNkN6v8Bp69VzhVtmiiaSrVDXnp2yllmigbGUssTNaoSrSYeTVET_ohJ-FKDawXjmMkP52QgiooB_nbB14j8vmy1qKA3DoatD1NGd_M8hmlfu3HxVn5CNNILPF6xRsO8RW4NQBg3A==">Subscribe</a>
+			© 2026 Afternoon Light <a href="https://instagram.com/afternoonlight" target="_blank">Instagram</a> <a href="mailto:hi@afternoonlight.com">Contact</a> <a href="https://20a4045b.sibforms.com/serve/MUIFAMFhR8jPwKzEfSTnE4IoPmemhCo6Y0ISGg34DVTC6c-CdZC0UO3VqaQbbyKAB-I67X7vWhNkN6v8Bp69VzhVtmiiaSrVDXnp2yllmigbGUssTNaoSrSYeTVET_ohJ-FKDawXjmMkP52QgiooB_nbB14j8vmy1qKA3DoatD1NGd_M8hmlfu3HxVn5CNNILPF6xRsO8RW4NQBg3A==">Subscribe</a>
 		</div>
 		<div class="Footer-column">
 			Pictured: <?= $header->caption() ?>.
