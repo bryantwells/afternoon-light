@@ -18,15 +18,19 @@
 }
 
 :root {
-	--space-xs: 0.25rlh;
+	--space-xxs: 0.25rlh;
+	--space-xs: 0.5rlh;
 	--space-sm: 1rlh;
 	--space-md: 2rlh;
 	--space-lg: 4rlh;
-	--space-xl: 8rlh;
+	--space-xl: 6rlh;
+	--space-xxl: 8rlh;
 
 	--font-size: 22px;
 	--font-size-sm: 0.75rem;
 	--font-size-lg: 5rem;
+
+	--max-width: 1200px;
 
 	@media (max-width: 1200px) {
 		--font-size: 18px;
@@ -34,6 +38,7 @@
 		--space-md: 1.5rlh;
 		--space-lg: 3rlh;
 		--space-xl: 6rlh;
+		--space-xxl: 6rlh;
 	}
 
 	@media (max-width: 600px) {
@@ -43,6 +48,7 @@
 		--space-md: 1rlh;
 		--space-lg: 2rlh;
 		--space-xl: 4rlh;
+		--space-xxl: 4rlh;
 	}
 }
 

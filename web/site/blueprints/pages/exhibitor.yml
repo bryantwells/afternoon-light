@@ -1,0 +1,24 @@
+title: Exhibitor
+
+fields:
+  location:
+    label: Location
+    type: text
+    width: 1/2
+  image:
+    label: Image
+    type: files
+    multiple: false
+    width: 1/2
+  description:
+    label: Description
+    type: writer
+    nodes: false
+    marks: []
+    width: 1/2
+  link:
+    label: Link
+    type: link
+    width: 1/2
+
+

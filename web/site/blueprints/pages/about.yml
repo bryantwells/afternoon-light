@@ -1,0 +1,22 @@
+title: About Page
+
+fields:
+
+  header_text:
+    label: Header Text
+    type: writer
+    nodes: false
+    marks: []
+
+  faq:
+    label: FAQ
+    type: structure
+    fields:
+      question:
+        type: writer
+        nodes: false
+        marks: []
+      answer:
+        type: writer
+        nodes: false
+        marks: [italic, link]

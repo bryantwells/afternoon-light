@@ -2,6 +2,7 @@ name: field.blocks.text.name
 icon: text
 wysiwyg: true
 preview: text
+label: Text
 fields:
   text:
     type: writer

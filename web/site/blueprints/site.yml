@@ -3,4 +3,42 @@ title: Site
 sections:
   pages:
     type: pages
-    template: [splash]
+    template: ['default','about','exhibitors']
+
+  fields:
+    type: fields
+    fields:
+      footer_header:
+        label: Footer Header
+        type: writer
+        nodes: false
+        marks: []
+        width: 1/2
+      footer_columns:
+        label: Footer Columns
+        type: blocks
+        width: 1/2
+        fieldsets:
+          body_text:
+            label: Body Text
+            fields:
+              text:
+                type: writer
+                nodes: false
+                marks: [italic, link]
+      footer_text:
+        label: Footer Text
+        type: writer
+        nodes: false
+        marks: []
+        width: 1/2
+      footer_links:
+        label: Footer Links
+        type: structure
+        fields:
+          label:
+            type: text
+          link:
+            type: link
+        width: 1/2
+

@@ -1,0 +1,7 @@
+title: Exhibitors Page
+
+sections:
+  exhibitors:
+    label: Exhibitors
+    type: pages
+    template: ['exhibitor']

@@ -1,3 +1,16 @@
-import { ViewSwitcher } from './_components/view-switcher';
+import { HomepageContent } from './_components/homepage-content';
 
-customElements.define('view-switcher', ViewSwitcher);
+const homepageContentElement = document.querySelector('.Content--homepage')
+if (homepageContentElement) {
+	const homepageContent = new HomepageContent(homepageContentElement);
+	homepageContent.init();
+}
+
+// import { Footer } from './_components/footer';
+
+// const footerElement = document.querySelector('.Footer')
+// if (footerElement) {
+// 	const footer = new Footer(footerElement);
+// 	footer.init();
+// }
+

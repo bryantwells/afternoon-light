@@ -26,6 +26,12 @@ h1, h2, h3 {
 	margin: unset;
 }
 
+ul, ol {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
 p {
 	margin: unset;
 }

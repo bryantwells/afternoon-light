@@ -8,5 +8,5 @@ return [
 	'panel' =>[
 		'install' => true
     ],
-    'url' => '/',
+    'url' => 'http://localhost:7070/',
 ];
