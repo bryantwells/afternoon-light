@@ -1,0 +1,84 @@
+title: Home Page
+
+fields:
+
+  headers:
+    label: Headers
+    type: structure
+    fields:
+      desktop_image:
+        label: Desktop Image
+        type: files
+        multiple: false
+      mobile_image:
+        label: Mobile Image
+        type: files
+        multiple: false
+      color:
+        label: Color
+        type: color
+      x_offset:
+        label: X-Offset
+        type: number
+        step: .01
+      y_offset:
+        label: Y-Offset
+        type: number
+        step: .01
+      caption:
+        type: text
+
+  body:
+    label: Body
+    type: blocks
+    fieldsets:
+      body_text:
+        label: Body Text
+        fields:
+          text:
+            type: writer
+            nodes: false
+            marks: [italic, link]
+      header_text:
+        label: Header Text
+        fields:
+          text:
+            type: writer
+            nodes: false
+            marks: []
+      header_figure:
+        label: Header Figure
+        fields:
+          title:
+            type: writer
+            nodes: false
+            marks: []
+          image:
+            type: files
+            multiple: false
+          text:
+            type: writer
+            nodes: false
+            marks: []
+      labeled_description:
+        label: Labeled Description
+        fields:
+          label:
+            type: text
+          description:
+            type: writer
+            nodes: false
+            marks: [italic, link]
+      featured_exhibitors:
+        label: Featured Exhibitors
+        fields:
+          exhibitors:
+            type: structure
+            fields:
+              image:
+                type: files
+                multiple: false
+              name:
+                type: text
+              link:
+                type: link
