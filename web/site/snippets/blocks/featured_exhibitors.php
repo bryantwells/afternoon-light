@@ -1,7 +1,6 @@
 <section class="Block Block--featuredExhibitors">
 	<header class="Block-header">
 		<h2>Featured Exhibitors</h2>
-		<p>(<a href="#">view all</a>)</p>
 	</header>
 	<div class="FeaturedExhibitors">
 		<?php foreach ($block->exhibitors()->toStructure() as $exhibitor): ?>
