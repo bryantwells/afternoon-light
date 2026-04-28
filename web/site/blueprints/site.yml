@@ -3,11 +3,14 @@ title: Site
 sections:
   pages:
     type: pages
-    template: ['default','about','exhibitors']
+    template: ['home','about','exhibitors']
 
   fields:
     type: fields
     fields:
+      color:
+        label: Color
+        type: color
       footer_header:
         label: Footer Header
         type: writer
@@ -26,19 +29,3 @@ sections:
                 type: writer
                 nodes: false
                 marks: [italic, link]
-      footer_text:
-        label: Footer Text
-        type: writer
-        nodes: false
-        marks: []
-        width: 1/2
-      footer_links:
-        label: Footer Links
-        type: structure
-        fields:
-          label:
-            type: text
-          link:
-            type: link
-        width: 1/2
-

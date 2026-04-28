@@ -105,5 +105,29 @@ panel.plugin("afternoon-light/blocks", {
 				/>
 			</block-wrapper>
 		`,
+		faq: `
+			<block-wrapper :fieldset="{ icon: 'text', name: 'FAQ' }">
+				<k-grid style="gap: var(--spacing-4); --columns: 1">
+					<k-text-field
+						label="Title"
+						:value="content.title"
+						@input="update({ title: $event })"
+					/>
+					<k-structure-field
+						label="FAQ"
+						:fields="{
+							question: { label: 'Question', type: 'writer' },
+							answer: { label: 'Answer', type: 'writer' },
+						}"
+						:columns="{
+							question: { label: 'Question', width: '1/2' },
+							answer: { label: 'Answer', width: '1/2' },
+						}"
+						:value="content.faq"
+						@input="update({ faq: $event })"
+					/>
+				</k-grid>
+			</block-wrapper>
+		`,
 	},
 });

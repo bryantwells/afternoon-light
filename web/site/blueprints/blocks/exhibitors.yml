@@ -1,9 +1,0 @@
-name: Exhibitors
-icon: text
-wysiwyg: true
-preview: text
-fields:
-  exhibitors:
-    type: writer
-    nodes: false
-    placeholder: field.blocks.exhibitors.placeholder

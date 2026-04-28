@@ -2,15 +2,13 @@
 
 <footer class="Footer">
 
-	<header class="Footer-header">
-		<header class="Header">
-			<div class="Header-text">
-				<?= $site->footer_header() ?>
-			</div>
-			<div class="Header-shadow" aria-hidden="true">
-				<?= $site->footer_header() ?>
-			</div>
-		</header>
+	<header class="Header Header--footer">
+		<div class="Header-text">
+			<?= $site->footer_header() ?>
+		</div>
+		<div class="Header-shadow" aria-hidden="true">
+			<?= $site->footer_header() ?>
+		</div>
 	</header>
 
 	<div class="Footer-columns">

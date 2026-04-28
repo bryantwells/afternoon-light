@@ -28,9 +28,13 @@
 
 	--font-size: 22px;
 	--font-size-sm: 0.75rem;
+	--font-size-md: 2.5rem;
 	--font-size-lg: 5rem;
 
-	--max-width: 1200px;
+	--max-width: calc(100vw - var(--space-sm) * 6 - 4ch);
+	--margin: calc((100vw - var(--max-width)) / 2);
+
+	--radius: 0.5rem;
 
 	@media (max-width: 1200px) {
 		--font-size: 18px;
@@ -38,17 +42,20 @@
 		--space-md: 1.5rlh;
 		--space-lg: 3rlh;
 		--space-xl: 6rlh;
-		--space-xxl: 6rlh;
+		--space-xxl: 6rlh;		
 	}
 
-	@media (max-width: 600px) {
+	@media (max-width: 800px) {
 		--font-size: 15px;
+		--font-size-sm: 12px;
 		--font-size-lg: 3rem;
 
 		--space-md: 1rlh;
 		--space-lg: 2rlh;
 		--space-xl: 4rlh;
 		--space-xxl: 4rlh;
+
+		--max-width: 100vw;
 	}
 }
 

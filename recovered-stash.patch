@@ -1,0 +1,1581 @@
+diff --git a/src/scss/_partials/variables.scss b/src/scss/_partials/variables.scss
+index 5e50d3d..0bd0eef 100644
+--- a/src/scss/_partials/variables.scss
++++ b/src/scss/_partials/variables.scss
+@@ -28,9 +28,13 @@
+ 
+ 	--font-size: 22px;
+ 	--font-size-sm: 0.75rem;
++	--font-size-md: 2.5rem;
+ 	--font-size-lg: 5rem;
+ 
+-	--max-width: 1200px;
++	--max-width: calc(100vw - var(--space-sm) * 6 - 4ch);
++	--margin: calc((100vw - var(--max-width)) / 2);
++
++	--radius: 0.5rem;
+ 
+ 	@media (max-width: 1200px) {
+ 		--font-size: 18px;
+@@ -38,17 +42,20 @@
+ 		--space-md: 1.5rlh;
+ 		--space-lg: 3rlh;
+ 		--space-xl: 6rlh;
+-		--space-xxl: 6rlh;
++		--space-xxl: 6rlh;		
+ 	}
+ 
+-	@media (max-width: 600px) {
++	@media (max-width: 800px) {
+ 		--font-size: 15px;
++		--font-size-sm: 12px;
+ 		--font-size-lg: 3rem;
+ 
+ 		--space-md: 1rlh;
+ 		--space-lg: 2rlh;
+ 		--space-xl: 4rlh;
+ 		--space-xxl: 4rlh;
++
++		--max-width: 100vw;
+ 	}
+ }
+ 
+diff --git a/src/scss/main.scss b/src/scss/main.scss
+index 86369d7..73000bb 100644
+--- a/src/scss/main.scss
++++ b/src/scss/main.scss
+@@ -46,13 +46,13 @@ body {
+ 	object-fit: cover;
+ 
+ 	&--mobile {
+-		@media (min-width: 600px) {
++		@media (min-width: 800px) {
+ 			display: none;
+ 		}
+ 	}
+ 
+ 	&--desktop {
+-		@media (max-width: 600px) {
++		@media (max-width: 800px) {
+ 			display: none;
+ 		}
+ 	}
+@@ -64,7 +64,7 @@ body {
+ 
+ .MainNav {
+ 	position: fixed;
+-	top: 0; left: 0;
++	top: 0; right: 0;
+ 	width: 100%; height: 0;
+ 	z-index: 5;
+ 
+@@ -84,45 +84,153 @@ body {
+ 	}
+ }
+ 
++.MainNav-details {
++	width: var(--margin);
++	position: absolute;
++	top: 0; left: 0;
++
++	@media (max-width: 800px) {
++		left: unset;
++		top: var(--space-xs);
++		right: var(--space-xs);
++		width: unset;
++	}
++}
++
++.MainNav-item--back {
++	position: absolute;
++	top: 0; right: 0;
++	padding: var(--space-sm);
++	padding-left: 0;
++
++	@media (max-width: 800px) {
++		display: none;
++	}
++}
++
++.MainNav-itemText {
++	&--mobile {
++		display: none;
++
++		@media (max-width: 800px) {
++			display: block;
++		}
++	}
++
++	&--desktop {
++		display: block;
++
++		@media (max-width: 800px) {
++			display: none;
++		}
++	}
++}
++
+ .MainNav-summary {
+ 	position: relative;
+ 	padding: var(--space-sm);
+ 	z-index: 2;
+ 	cursor: pointer;
++	padding-right: 0;
++
++	@media (max-width: 800px) {
++		padding: 0;
++		background-color: var(--theme-color);
++		color: white;
++		border-radius: 50%;
++		height: calc(1rlh + var(--space-xxs) * 2);
++		aspect-ratio: 1/1;
++		display: flex;
++		align-items: center;
++		justify-content: center;
++	}
++}
++
++.MainNav-summaryText {
++	&--mobile {
++		display: none;
++
++		@media (max-width: 800px) {
++			display: block;
++		}
++	}
++	&--desktop {
++		display: block;
++
++		@media (max-width: 800px) {
++			display: none;
++		}
++	}
+ }
+ 
+ .MainNav-list {
+-	padding: var(--space-sm);
+-	padding-left: calc(12.5% + var(--space-md));
++	padding: var(--space-sm) calc(var(--margin) + var(--space-sm));
+ 	position: fixed;
+ 	top: 0; left: 0;
+ 	width: 100%; height: 100%;
+ 	z-index: 1;
+ 	background-color: var(--theme-color);
++	color: white;
++
++	@media (max-width: 800px) {
++		padding: var(--space-sm);
++	}
+ }
+ 
+ .MainNav-item {
+ 	cursor: pointer;
++	
++	a:hover {
++		color: orange;
++	}
+ }
+ 
+-.MainNav-details[open] + .Footer {
+-	display: block;
+-}
++
++
++.MainNav-details[open] {
++	color: white;
++
++	& + .Footer {
++		display: block;
++	}
++} 
+ 
+ // HEADER
+ // ===========================
+ 
+ .Header {
+-	margin: var(--space-lg) 0;
+-	font-family: 'Magister';
+-	font-size: var(--font-size-lg);
+-	text-align: center;
+-	position: relative;
+-	line-height: 1;	
++	max-width: var(--max-width);
+ 
+-	&--main {
+-		margin-top: 0;
++	&--home, &--footer {
+ 		height: 100dvh;
++		margin-bottom: var(--space-lg);
++		font-family: 'Magister';
++		font-size: var(--font-size-lg);
++		text-align: center;
++		position: relative;
++		line-height: 1;	
++		max-width: unset;
++	}
++
++	&--footer {
++		flex: 1;
++		display: flex;
++		flex-direction: column;
++		justify-content: center;
++
++		.Header-text,
++		.Header-shadow {
++			height: 100%;
++			justify-content: center;
++		}
++	}
++
++	&--page {
++		margin: auto;
++
++		.Header-text {
++			padding: var(--space-sm);
++		}
+ 	}
+ }
+ 
+@@ -133,6 +241,10 @@ body {
+ 	flex-direction: column;
+ 	justify-content: space-between;
+ 	height: 100%;
++
++	@media (max-width: 800px) {
++		padding: var(--space-lg) var(--space-sm);
++	}
+ }
+ 
+ .Header-text {
+@@ -148,52 +260,42 @@ body {
+ 	text-shadow: var(--x-offset) var(--y-offset) 0.175em var(--theme-color);
+ 	mix-blend-mode: darken;
+ 	z-index: 0;
++	pointer-events: none;
+ }
+ 
+ // CONTENT
+ // ===========================
+ 
+ .Content {
+-	display: flow-root;
+-	margin: var(--space-md) 0;
++	margin: var(--space-md) auto;
++	max-width: var(--max-width);
++	min-height: 50vh;
+ }
+ 
+ // BLOCK
+ // ===========================
+ 
+ .Block {
+-	margin: var(--space-md) auto;
+-	padding: 0 var(--space-md);
+-	max-width: 75%;
++	margin: var(--space-lg) auto;
++	padding: 0 var(--space-sm);
+ 
+ 	&--exhibitors {
+-
+ 		display: grid;
+ 		gap: var(--space-sm);
+-		grid-template-columns: 1fr 2fr;
++		grid-template-columns: repeat(3, 1fr);
++		font-size: var(--font-size-sm);
+ 
+-		.Block-header {
+-			@media (max-width: 600px) {
+-				text-transform: uppercase;
+-			}
+-		}
+-
+-		.Block-body {
+-			columns: 2;
+-
+-			@media (max-width: 600px) {
+-				columns: 1;
+-			}
++		@media (max-width: 1200px) {
++			grid-template-columns: repeat(2, 1fr);
+ 		}
+ 
+-		@media (max-width: 600px) {
+-			grid-template-columns: 1fr;
++		@media (max-width: 800px) {
++			grid-template-columns: repeat(1, 1fr);
+ 		}
+ 	}
+ 
+ 	&--featuredExhibitors {
+ 		margin: var(--space-lg) auto;
+-		padding: 0 var(--space-md);
+ 
+ 		.Block-header {
+ 			display: flex;
+@@ -202,7 +304,6 @@ body {
+ 	}
+ 
+ 	&--header {
+-		margin: var(--space-xl) auto;
+ 		font-family: 'Magister';
+ 		font-size: var(--font-size-lg);
+ 		line-height: 1;
+@@ -211,8 +312,7 @@ body {
+ 	}
+ 
+ 	&--headerFigure {
+-		margin: var(--space-xl) auto;
+-		padding: 0 var(--space-md);
++		color: white;
+ 	}
+ 
+ 	&--description {
+@@ -220,7 +320,7 @@ body {
+ 		grid-template-columns: 1fr 2fr;
+ 		gap: var(--space-sm);
+ 
+-		@media (max-width: 600px) {
++		@media (max-width: 800px) {
+ 			grid-template-columns: 1fr;
+ 		}
+ 	}
+@@ -235,6 +335,39 @@ body {
+ 	font-size: var(--font-size-sm);
+ }
+ 
++// EXHIBITOR
++// ===========================
++
++.Exhibitor-details {
++
++	&:not([open])::after {
++		content: '+'
++	}
++	&[open]::after {
++		content: '-'
++	}
++}
++
++.Exhibitor-summary {
++	padding: var(--space-xs) 0;
++	border-bottom: 1px solid var(--theme-color);
++	cursor: pointer;
++	user-select: none;
++}
++
++.Exhibitor-body {
++	margin: var(--space-xs) 0;
++	display: grid;
++	gap: var(--space-xs);
++}
++
++.Exhibitor-image {
++	border-radius: var(--radius);
++	aspect-ratio: 4/3;
++	object-fit: cover;
++	margin: auto;
++}
++
+ // HEADER FIGURE
+ // ===========================
+ 
+@@ -254,7 +387,7 @@ body {
+ 	width: 100%;
+ 	height: 100%;
+ 	object-fit: cover;
+-	border-radius: 10px;
++	border-radius: var(--radius);
+ }
+ 
+ .HeaderFigure-caption {
+@@ -269,6 +402,10 @@ body {
+ 	gap: var(--space-sm);
+ 	grid-template-columns: repeat(3,1fr);
+ 	margin: auto;
++
++	@media (max-width: 1200px) {
++		grid-template-columns: repeat(2,1fr);
++	}
+ }
+ 
+ .FeaturedExhibitors-figure {
+@@ -280,7 +417,7 @@ body {
+ 	position: absolute;
+ 	top: 0; left: 0;
+ 	width: 100%; height: 100%;
+-	border-radius: 10px;
++	border-radius: var(--radius);
+ 	object-fit: cover;
+ }
+ 
+@@ -306,13 +443,13 @@ body {
+ 	grid-template-columns: 1fr 2fr;
+ 	
+ 
+-	@media (max-width: 600px) {
++	@media (max-width: 800px) {
+ 		grid-template-columns: 1fr;
+ 	}
+ }
+ 
+ .Table-title {
+-	@media (max-width: 600px) {
++	@media (max-width: 800px) {
+ 		text-transform: uppercase;
+ 	}
+ }
+@@ -333,7 +470,7 @@ body {
+ 			padding: 0.75rem 1.5rem;
+ 			min-width: 33%;
+ 
+-			@media (max-width: 600px) {
++			@media (max-width: 800px) {
+ 				min-width: 50%;
+ 			}
+ 		}
+@@ -390,5 +527,30 @@ body {
+ 
+ .Footer-columns {
+ 	display: grid;
+-	grid-template-columns: 1fr 1fr 1fr 1fr;
++	grid-template-columns: 1fr 1fr;
++
++	@media (max-width: 800px) {
++		grid-template-columns: 1fr;
++	}
++}
++
++// FAQ
++// ===========================
++
++.FAQ {
++	padding: var(--space-xxs) 0;
++	border-bottom: 1px solid currentColor;
++
++	&:first-child {
++		border-top: 1px solid currentColor;
++	}
++}
++
++.FAQ-question {
++	cursor: pointer;
++}
++
++.FAQ-answer {
++	opacity: 0.5;
++	margin-bottom: var(--space-xs);
+ }
+\ No newline at end of file
+diff --git a/src/ts/_components/footer.ts b/src/ts/_components/footer.ts
+deleted file mode 100644
+index dabb5ea..0000000
+--- a/src/ts/_components/footer.ts
++++ /dev/null
+@@ -1,23 +0,0 @@
+-export class Footer {
+-
+-	element!: Element;
+-	_intersectionObserver?: IntersectionObserver;
+-
+-	constructor(element: Element) {
+-		this.element = element;
+-	}
+-
+-	init() {
+-		this._intersectionObserver = new IntersectionObserver(this._handleIntersection);
+-		this._intersectionObserver.observe(this.element);
+-	}
+-
+-	_handleIntersection = (entries: IntersectionObserverEntry[]) => {
+-		entries.forEach((entry) => {
+-			if (entry.target == this.element) {
+-				document.body.classList.toggle('is-dimmed', !entry.isIntersecting);
+-			}
+-		});
+-	}
+-
+-}
+\ No newline at end of file
+diff --git a/src/ts/_components/homepage-content.ts b/src/ts/_components/homepage-content.ts
+deleted file mode 100644
+index 3d057d1..0000000
+--- a/src/ts/_components/homepage-content.ts
++++ /dev/null
+@@ -1,23 +0,0 @@
+-export class HomepageContent {
+-
+-	element!: Element;
+-	_intersectionObserver?: IntersectionObserver;
+-
+-	constructor(element: Element) {
+-		this.element = element;
+-	}
+-
+-	init() {
+-		this._intersectionObserver = new IntersectionObserver(this._handleIntersection);
+-		this._intersectionObserver.observe(this.element);
+-	}
+-
+-	_handleIntersection = (entries: IntersectionObserverEntry[]) => {
+-		entries.forEach((entry) => {
+-			if (entry.target == this.element) {
+-				document.body.classList.toggle('is-dimmed', entry.isIntersecting);
+-			}
+-		});
+-	}
+-
+-}
+\ No newline at end of file
+diff --git a/src/ts/main.ts b/src/ts/main.ts
+index ac885c1..1639a38 100644
+--- a/src/ts/main.ts
++++ b/src/ts/main.ts
+@@ -1,16 +1,7 @@
+-import { HomepageContent } from './_components/homepage-content';
+-
+-const homepageContentElement = document.querySelector('.Content--homepage')
+-if (homepageContentElement) {
+-	const homepageContent = new HomepageContent(homepageContentElement);
+-	homepageContent.init();
+-}
+-
+-// import { Footer } from './_components/footer';
+-
+-// const footerElement = document.querySelector('.Footer')
+-// if (footerElement) {
+-// 	const footer = new Footer(footerElement);
+-// 	footer.init();
+-// }
++import { Content } from './_components/content';
+ 
++const contentElement = document.querySelector('.Content--home')
++if (contentElement) {
++	const content = new Content(contentElement);
++	content.init();
++}
+\ No newline at end of file
+diff --git a/web/assets/css/main.css b/web/assets/css/main.css
+index de6c58c..92a57c6 100644
+--- a/web/assets/css/main.css
++++ b/web/assets/css/main.css
+@@ -107,8 +107,11 @@ img {
+   --space-xxl: 8rlh;
+   --font-size: 22px;
+   --font-size-sm: 0.75rem;
++  --font-size-md: 2.5rem;
+   --font-size-lg: 5rem;
+-  --max-width: 1200px;
++  --max-width: calc(100vw - var(--space-sm) * 6 - 4ch);
++  --margin: calc((100vw - var(--max-width)) / 2);
++  --radius: 0.5rem;
+ }
+ @media (max-width: 1200px) {
+   :root {
+@@ -120,14 +123,16 @@ img {
+     --space-xxl: 6rlh;
+   }
+ }
+-@media (max-width: 600px) {
++@media (max-width: 800px) {
+   :root {
+     --font-size: 15px;
++    --font-size-sm: 12px;
+     --font-size-lg: 3rem;
+     --space-md: 1rlh;
+     --space-lg: 2rlh;
+     --space-xl: 4rlh;
+     --space-xxl: 4rlh;
++    --max-width: 100vw;
+   }
+ }
+ 
+@@ -181,12 +186,12 @@ body.is-dimmed::before {
+   height: 100%;
+   object-fit: cover;
+ }
+-@media (min-width: 600px) {
++@media (min-width: 800px) {
+   .Background-image--mobile {
+     display: none;
+   }
+ }
+-@media (max-width: 600px) {
++@media (max-width: 800px) {
+   .Background-image--desktop {
+     display: none;
+   }
+@@ -195,7 +200,7 @@ body.is-dimmed::before {
+ .MainNav {
+   position: fixed;
+   top: 0;
+-  left: 0;
++  right: 0;
+   width: 100%;
+   height: 0;
+   z-index: 5;
+@@ -214,16 +219,91 @@ body.is-dimmed::before {
+   color: black;
+ }
+ 
++.MainNav-details {
++  width: var(--margin);
++  position: absolute;
++  top: 0;
++  left: 0;
++}
++@media (max-width: 800px) {
++  .MainNav-details {
++    left: unset;
++    top: var(--space-xs);
++    right: var(--space-xs);
++    width: unset;
++  }
++}
++
++.MainNav-item--back {
++  position: absolute;
++  top: 0;
++  right: 0;
++  padding: var(--space-sm);
++  padding-left: 0;
++}
++@media (max-width: 800px) {
++  .MainNav-item--back {
++    display: none;
++  }
++}
++
++.MainNav-itemText--mobile {
++  display: none;
++}
++@media (max-width: 800px) {
++  .MainNav-itemText--mobile {
++    display: block;
++  }
++}
++.MainNav-itemText--desktop {
++  display: block;
++}
++@media (max-width: 800px) {
++  .MainNav-itemText--desktop {
++    display: none;
++  }
++}
++
+ .MainNav-summary {
+   position: relative;
+   padding: var(--space-sm);
+   z-index: 2;
+   cursor: pointer;
++  padding-right: 0;
++}
++@media (max-width: 800px) {
++  .MainNav-summary {
++    padding: 0;
++    background-color: var(--theme-color);
++    color: white;
++    border-radius: 50%;
++    height: calc(1rlh + var(--space-xxs) * 2);
++    aspect-ratio: 1/1;
++    display: flex;
++    align-items: center;
++    justify-content: center;
++  }
++}
++
++.MainNav-summaryText--mobile {
++  display: none;
++}
++@media (max-width: 800px) {
++  .MainNav-summaryText--mobile {
++    display: block;
++  }
++}
++.MainNav-summaryText--desktop {
++  display: block;
++}
++@media (max-width: 800px) {
++  .MainNav-summaryText--desktop {
++    display: none;
++  }
+ }
+ 
+ .MainNav-list {
+-  padding: var(--space-sm);
+-  padding-left: calc(12.5% + var(--space-md));
++  padding: var(--space-sm) calc(var(--margin) + var(--space-sm));
+   position: fixed;
+   top: 0;
+   left: 0;
+@@ -231,27 +311,57 @@ body.is-dimmed::before {
+   height: 100%;
+   z-index: 1;
+   background-color: var(--theme-color);
++  color: white;
++}
++@media (max-width: 800px) {
++  .MainNav-list {
++    padding: var(--space-sm);
++  }
+ }
+ 
+ .MainNav-item {
+   cursor: pointer;
+ }
++.MainNav-item a:hover {
++  color: orange;
++}
+ 
++.MainNav-details[open] {
++  color: white;
++}
+ .MainNav-details[open] + .Footer {
+   display: block;
+ }
+ 
+ .Header {
+-  margin: var(--space-lg) 0;
++  max-width: var(--max-width);
++}
++.Header--home, .Header--footer {
++  height: 100dvh;
++  margin-bottom: var(--space-lg);
+   font-family: "Magister";
+   font-size: var(--font-size-lg);
+   text-align: center;
+   position: relative;
+   line-height: 1;
++  max-width: unset;
+ }
+-.Header--main {
+-  margin-top: 0;
+-  height: 100dvh;
++.Header--footer {
++  flex: 1;
++  display: flex;
++  flex-direction: column;
++  justify-content: center;
++}
++.Header--footer .Header-text,
++.Header--footer .Header-shadow {
++  height: 100%;
++  justify-content: center;
++}
++.Header--page {
++  margin: auto;
++}
++.Header--page .Header-text {
++  padding: var(--space-sm);
+ }
+ 
+ .Header-text,
+@@ -262,6 +372,12 @@ body.is-dimmed::before {
+   justify-content: space-between;
+   height: 100%;
+ }
++@media (max-width: 800px) {
++  .Header-text,
++  .Header-shadow {
++    padding: var(--space-lg) var(--space-sm);
++  }
++}
+ 
+ .Header-text {
+   position: relative;
+@@ -277,51 +393,43 @@ body.is-dimmed::before {
+   text-shadow: var(--x-offset) var(--y-offset) 0.175em var(--theme-color);
+   mix-blend-mode: darken;
+   z-index: 0;
++  pointer-events: none;
+ }
+ 
+ .Content {
+-  display: flow-root;
+-  margin: var(--space-md) 0;
++  margin: var(--space-md) auto;
++  max-width: var(--max-width);
++  min-height: 50vh;
+ }
+ 
+ .Block {
+-  margin: var(--space-md) auto;
+-  padding: 0 var(--space-md);
+-  max-width: 75%;
++  margin: var(--space-lg) auto;
++  padding: 0 var(--space-sm);
+ }
+ .Block--exhibitors {
+   display: grid;
+   gap: var(--space-sm);
+-  grid-template-columns: 1fr 2fr;
+-}
+-@media (max-width: 600px) {
+-  .Block--exhibitors .Block-header {
+-    text-transform: uppercase;
+-  }
+-}
+-.Block--exhibitors .Block-body {
+-  columns: 2;
++  grid-template-columns: repeat(3, 1fr);
++  font-size: var(--font-size-sm);
+ }
+-@media (max-width: 600px) {
+-  .Block--exhibitors .Block-body {
+-    columns: 1;
++@media (max-width: 1200px) {
++  .Block--exhibitors {
++    grid-template-columns: repeat(2, 1fr);
+   }
+ }
+-@media (max-width: 600px) {
++@media (max-width: 800px) {
+   .Block--exhibitors {
+-    grid-template-columns: 1fr;
++    grid-template-columns: repeat(1, 1fr);
+   }
+ }
+ .Block--featuredExhibitors {
+   margin: var(--space-lg) auto;
+-  padding: 0 var(--space-md);
+ }
+ .Block--featuredExhibitors .Block-header {
+   display: flex;
+   justify-content: space-between;
+ }
+ .Block--header {
+-  margin: var(--space-xl) auto;
+   font-family: "Magister";
+   font-size: var(--font-size-lg);
+   line-height: 1;
+@@ -329,15 +437,14 @@ body.is-dimmed::before {
+   max-width: unset;
+ }
+ .Block--headerFigure {
+-  margin: var(--space-xl) auto;
+-  padding: 0 var(--space-md);
++  color: white;
+ }
+ .Block--description {
+   display: grid;
+   grid-template-columns: 1fr 2fr;
+   gap: var(--space-sm);
+ }
+-@media (max-width: 600px) {
++@media (max-width: 800px) {
+   .Block--description {
+     grid-template-columns: 1fr;
+   }
+@@ -352,6 +459,33 @@ body.is-dimmed::before {
+   font-size: var(--font-size-sm);
+ }
+ 
++.Exhibitor-details:not([open])::after {
++  content: "+";
++}
++.Exhibitor-details[open]::after {
++  content: "-";
++}
++
++.Exhibitor-summary {
++  padding: var(--space-xs) 0;
++  border-bottom: 1px solid var(--theme-color);
++  cursor: pointer;
++  user-select: none;
++}
++
++.Exhibitor-body {
++  margin: var(--space-xs) 0;
++  display: grid;
++  gap: var(--space-xs);
++}
++
++.Exhibitor-image {
++  border-radius: var(--radius);
++  aspect-ratio: 4/3;
++  object-fit: cover;
++  margin: auto;
++}
++
+ .HeaderFigure {
+   position: relative;
+   padding: var(--space-xl) var(--space-md);
+@@ -369,7 +503,7 @@ body.is-dimmed::before {
+   width: 100%;
+   height: 100%;
+   object-fit: cover;
+-  border-radius: 10px;
++  border-radius: var(--radius);
+ }
+ 
+ .HeaderFigure-caption {
+@@ -382,6 +516,11 @@ body.is-dimmed::before {
+   grid-template-columns: repeat(3, 1fr);
+   margin: auto;
+ }
++@media (max-width: 1200px) {
++  .FeaturedExhibitors {
++    grid-template-columns: repeat(2, 1fr);
++  }
++}
+ 
+ .FeaturedExhibitors-figure {
+   position: relative;
+@@ -394,7 +533,7 @@ body.is-dimmed::before {
+   left: 0;
+   width: 100%;
+   height: 100%;
+-  border-radius: 10px;
++  border-radius: var(--radius);
+   object-fit: cover;
+ }
+ 
+@@ -416,13 +555,13 @@ body.is-dimmed::before {
+   display: grid;
+   grid-template-columns: 1fr 2fr;
+ }
+-@media (max-width: 600px) {
++@media (max-width: 800px) {
+   .Table-item {
+     grid-template-columns: 1fr;
+   }
+ }
+ 
+-@media (max-width: 600px) {
++@media (max-width: 800px) {
+   .Table-title {
+     text-transform: uppercase;
+   }
+@@ -441,7 +580,7 @@ body.is-dimmed::before {
+   padding: 0.75rem 1.5rem;
+   min-width: 33%;
+ }
+-@media (max-width: 600px) {
++@media (max-width: 800px) {
+   .Form--register .Form-button {
+     min-width: 50%;
+   }
+@@ -494,7 +633,29 @@ body.is-dimmed::before {
+ 
+ .Footer-columns {
+   display: grid;
+-  grid-template-columns: 1fr 1fr 1fr 1fr;
++  grid-template-columns: 1fr 1fr;
++}
++@media (max-width: 800px) {
++  .Footer-columns {
++    grid-template-columns: 1fr;
++  }
++}
++
++.FAQ {
++  padding: var(--space-xxs) 0;
++  border-bottom: 1px solid currentColor;
++}
++.FAQ:first-child {
++  border-top: 1px solid currentColor;
++}
++
++.FAQ-question {
++  cursor: pointer;
++}
++
++.FAQ-answer {
++  opacity: 0.5;
++  margin-bottom: var(--space-xs);
+ }
+ 
+ /*# sourceMappingURL=main.css.map */
+diff --git a/web/assets/css/main.css.map b/web/assets/css/main.css.map
+index fea6e20..9a1a251 100644
+--- a/web/assets/css/main.css.map
++++ b/web/assets/css/main.css.map
+@@ -1 +1 @@
+-{"version":3,"sourceRoot":"","sources":["../../../src/scss/_partials/reset.scss","../../../src/scss/_partials/variables.scss","../../../src/scss/_partials/utilities.scss","../../../src/scss/main.scss"],"names":[],"mappings":"AAGA;EACC;;;AAGD;EACC;;;AAGD;EACC;EACA;EACA;EACA;;;AAGD;EACC;;;AAGD;EACC;EACA;EACA;;;AAGD;EACC;EACA;EACA;;;AAGD;EACC;;;AAGD;EACC;;;AAGD;EACC;;;AAGD;EACC;;;AAGD;EACC;;;AAGD;EACC;;;AAGD;EACC;EACA;EACA;EACA;EACA;EACA;;;AAGD;EACC;EACA;EACA;EACA;EACA;EACA;;;AAGD;EACC;;AAEA;EACA;;;AAID;EACC;EACA;;;ACnFD;EACI;EACA;EACA;EACA;EACA;;AAGJ;EACI;EACA;EACA;EACA;EACA;;AAGJ;EACC;EACA;EACA;EACA;EACA;EACA;EACA;EAEA;EACA;EACA;EAEA;;AAEA;EAfD;IAgBE;IACA;IACA;IACA;IACA;IACA;;;AAGD;EAxBD;IAyBE;IACA;IAEA;IACA;IACA;IACA;;;;AC9CD;EACC;;;ACDF;EACC;;;AAGD;EACC;EACA;;;AAGD;EACC;;AAEA;EACC;EACA;EACA;EAAQ;EAAS;EAAa;EAC9B;EACA;EACA;EACA;EACA;;AAGD;EACC;;;AAOF;EACC;EACA;EAAQ;EAAS;EAAW;EAC5B;;;AAGD;EACC;EACA;EAAQ;EACR;EAAa;EACb;;AAGC;EADD;IAEE;;;AAKD;EADD;IAEE;;;;AASH;EACC;EACA;EAAQ;EACR;EAAa;EACb;;AAEA;EACC;;AAGD;EACC;EACA;EACA;EACA;EACA;EACA;EACA;EACA;;;AAIF;EACC;EACA;EACA;EACA;;;AAGD;EACC;EACA;EACA;EACA;EAAQ;EACR;EAAa;EACb;EACA;;;AAGD;EACC;;;AAGD;EACC;;;AAMD;EACC;EACA;EACA;EACA;EACA;EACA;;AAEA;EACC;EACA;;;AAIF;AAAA;EAEC;EACA;EACA;EACA;EACA;;;AAGD;EACC;EACA;;;AAGD;EACC;EACA;EAAQ;EACR;EACA;EACA;EACA;EACA;;;AAMD;EACC;EACA;;;AAMD;EACC;EACA;EACA;;AAEA;EAEC;EACA;EACA;;AAGC;EADD;IAEE;;;AAIF;EACC;;AAEA;EAHD;IAIE;;;AAIF;EApBD;IAqBE;;;AAIF;EACC;EACA;;AAEA;EACC;EACA;;AAIF;EACC;EACA;EACA;EACA;EACA;EACA;;AAGD;EACC;EACA;;AAGD;EACC;EACA;EACA;;AAEA;EALD;IAME;;;;AAKH;EACC;;;AAGD;EACC;EACA;;;AAMD;EACC;EACA;EACA;EACA;EACA;EACA;EACA;;;AAGD;EACC;EACA;EAAQ;EACR;EACA;EACA;EACA;;;AAGD;EACC;;;AAMD;EACC;EACA;EACA;EACA;;;AAGD;EACC;EACA;;;AAGD;EACC;EACA;EAAQ;EACR;EAAa;EACb;EACA;;;AAGD;EACC;EACA;EAAW;EACX;EACA;EACA;;;AAOD;EACC;EACA;;;AAGD;EACC;EACA;;AAGA;EALD;IAME;;;;AAKD;EADD;IAEE;;;;AAOF;EACC;EACA;;AAEA;EACC;EACA;EACA;;AAEA;EACC;EACA;;AAEA;EAJD;IAKE;;;;AAMJ;EACC;;;AAGD;EACC;EACA;EACA;EACA;EACA;EACA;EACA;EACA;;;AAGD;EACC;EACA;EACA;EACA;EACA;EACA;;;AAMD;EACC;EACA;EACA;EACA;EACA;EACA;EACA;;;AAGD;EACC;EACA;EACA;EACA;EACA;EACA;EACA;EACA;;;AAGD;EACC;EACA","file":"main.css"}
+\ No newline at end of file
++{"version":3,"sourceRoot":"","sources":["../../../src/scss/_partials/reset.scss","../../../src/scss/_partials/variables.scss","../../../src/scss/_partials/utilities.scss","../../../src/scss/main.scss"],"names":[],"mappings":"AAGA;EACC;;;AAGD;EACC;;;AAGD;EACC;EACA;EACA;EACA;;;AAGD;EACC;;;AAGD;EACC;EACA;EACA;;;AAGD;EACC;EACA;EACA;;;AAGD;EACC;;;AAGD;EACC;;;AAGD;EACC;;;AAGD;EACC;;;AAGD;EACC;;;AAGD;EACC;;;AAGD;EACC;EACA;EACA;EACA;EACA;EACA;;;AAGD;EACC;EACA;EACA;EACA;EACA;EACA;;;AAGD;EACC;;AAEA;EACA;;;AAID;EACC;EACA;;;ACnFD;EACI;EACA;EACA;EACA;EACA;;AAGJ;EACI;EACA;EACA;EACA;EACA;;AAGJ;EACC;EACA;EACA;EACA;EACA;EACA;EACA;EAEA;EACA;EACA;EACA;EAEA;EACA;EAEA;;AAEA;EAnBD;IAoBE;IACA;IACA;IACA;IACA;IACA;;;AAGD;EA5BD;IA6BE;IACA;IACA;IAEA;IACA;IACA;IACA;IAEA;;;;ACrDD;EACC;;;ACDF;EACC;;;AAGD;EACC;EACA;;;AAGD;EACC;;AAEA;EACC;EACA;EACA;EAAQ;EAAS;EAAa;EAC9B;EACA;EACA;EACA;EACA;;AAGD;EACC;;;AAOF;EACC;EACA;EAAQ;EAAS;EAAW;EAC5B;;;AAGD;EACC;EACA;EAAQ;EACR;EAAa;EACb;;AAGC;EADD;IAEE;;;AAKD;EADD;IAEE;;;;AASH;EACC;EACA;EAAQ;EACR;EAAa;EACb;;AAEA;EACC;;AAGD;EACC;EACA;EACA;EACA;EACA;EACA;EACA;EACA;;;AAIF;EACC;EACA;EACA;EAAQ;;AAER;EALD;IAME;IACA;IACA;IACA;;;;AAIF;EACC;EACA;EAAQ;EACR;EACA;;AAEA;EAND;IAOE;;;;AAKD;EACC;;AAEA;EAHD;IAIE;;;AAIF;EACC;;AAEA;EAHD;IAIE;;;;AAKH;EACC;EACA;EACA;EACA;EACA;;AAEA;EAPD;IAQE;IACA;IACA;IACA;IACA;IACA;IACA;IACA;IACA;;;;AAKD;EACC;;AAEA;EAHD;IAIE;;;AAGF;EACC;;AAEA;EAHD;IAIE;;;;AAKH;EACC;EACA;EACA;EAAQ;EACR;EAAa;EACb;EACA;EACA;;AAEA;EATD;IAUE;;;;AAIF;EACC;;AAEA;EACC;;;AAMF;EACC;;AAEA;EACC;;;AAOF;EACC;;AAEA;EACC;EACA;EACA;EACA;EACA;EACA;EACA;EACA;;AAGD;EACC;EACA;EACA;EACA;;AAEA;AAAA;EAEC;EACA;;AAIF;EACC;;AAEA;EACC;;;AAKH;AAAA;EAEC;EACA;EACA;EACA;EACA;;AAEA;EARD;AAAA;IASE;;;;AAIF;EACC;EACA;;;AAGD;EACC;EACA;EAAQ;EACR;EACA;EACA;EACA;EACA;EACA;;;AAMD;EACC;EACA;EACA;;;AAMD;EACC;EACA;;AAEA;EACC;EACA;EACA;EACA;;AAEA;EAND;IAOE;;;AAGD;EAVD;IAWE;;;AAIF;EACC;;AAEA;EACC;EACA;;AAIF;EACC;EACA;EACA;EACA;EACA;;AAGD;EACC;;AAGD;EACC;EACA;EACA;;AAEA;EALD;IAME;;;;AAKH;EACC;;;AAGD;EACC;EACA;;;AAQA;EACC;;AAED;EACC;;;AAIF;EACC;EACA;EACA;EACA;;;AAGD;EACC;EACA;EACA;;;AAGD;EACC;EACA;EACA;EACA;;;AAMD;EACC;EACA;EACA;EACA;EACA;EACA;EACA;;;AAGD;EACC;EACA;EAAQ;EACR;EACA;EACA;EACA;;;AAGD;EACC;;;AAMD;EACC;EACA;EACA;EACA;;AAEA;EAND;IAOE;;;;AAIF;EACC;EACA;;;AAGD;EACC;EACA;EAAQ;EACR;EAAa;EACb;EACA;;;AAGD;EACC;EACA;EAAW;EACX;EACA;EACA;;;AAOD;EACC;EACA;;;AAGD;EACC;EACA;;AAGA;EALD;IAME;;;;AAKD;EADD;IAEE;;;;AAOF;EACC;EACA;;AAEA;EACC;EACA;EACA;;AAEA;EACC;EACA;;AAEA;EAJD;IAKE;;;;AAMJ;EACC;;;AAGD;EACC;EACA;EACA;EACA;EACA;EACA;EACA;EACA;;;AAGD;EACC;EACA;EACA;EACA;EACA;EACA;;;AAMD;EACC;EACA;EACA;EACA;EACA;EACA;EACA;;;AAGD;EACC;EACA;EACA;EACA;EACA;EACA;EACA;EACA;;;AAGD;EACC;EACA;;AAEA;EAJD;IAKE;;;;AAOF;EACC;EACA;;AAEA;EACC;;;AAIF;EACC;;;AAGD;EACC;EACA","file":"main.css"}
+\ No newline at end of file
+diff --git a/web/assets/js/main.js b/web/assets/js/main.js
+index e094be3..3828189 100644
+--- a/web/assets/js/main.js
++++ b/web/assets/js/main.js
+@@ -1,2 +1,2 @@
+-(()=>{var e=class{constructor(t){this._handleIntersection=t=>{t.forEach(n=>{n.target==this.element&&document.body.classList.toggle("is-dimmed",n.isIntersecting)})};this.element=t}init(){this._intersectionObserver=new IntersectionObserver(this._handleIntersection),this._intersectionObserver.observe(this.element)}};var s=document.querySelector(".Content--homepage");s&&new e(s).init();})();
++(()=>{var e=class{constructor(t){this._handleIntersection=t=>{t.forEach(n=>{n.target==this.element&&document.body.classList.toggle("is-dimmed",n.isIntersecting)})};this.element=t}init(){this._intersectionObserver=new IntersectionObserver(this._handleIntersection),this._intersectionObserver.observe(this.element)}};var s=document.querySelector(".Content--home");s&&new e(s).init();})();
+ //# sourceMappingURL=main.js.map
+diff --git a/web/assets/js/main.js.map b/web/assets/js/main.js.map
+index 6108bee..aa32b18 100644
+--- a/web/assets/js/main.js.map
++++ b/web/assets/js/main.js.map
+@@ -1,7 +1,7 @@
+ {
+   "version": 3,
+-  "sources": ["../../../src/ts/_components/homepage-content.ts", "../../../src/ts/main.ts"],
+-  "sourcesContent": ["export class HomepageContent {\n\n\telement!: Element;\n\t_intersectionObserver?: IntersectionObserver;\n\n\tconstructor(element: Element) {\n\t\tthis.element = element;\n\t}\n\n\tinit() {\n\t\tthis._intersectionObserver = new IntersectionObserver(this._handleIntersection);\n\t\tthis._intersectionObserver.observe(this.element);\n\t}\n\n\t_handleIntersection = (entries: IntersectionObserverEntry[]) => {\n\t\tentries.forEach((entry) => {\n\t\t\tif (entry.target == this.element) {\n\t\t\t\tdocument.body.classList.toggle('is-dimmed', entry.isIntersecting);\n\t\t\t}\n\t\t});\n\t}\n\n}", "import { HomepageContent } from './_components/homepage-content';\n\nconst homepageContentElement = document.querySelector('.Content--homepage')\nif (homepageContentElement) {\n\tconst homepageContent = new HomepageContent(homepageContentElement);\n\thomepageContent.init();\n}\n\n// import { Footer } from './_components/footer';\n\n// const footerElement = document.querySelector('.Footer')\n// if (footerElement) {\n// \tconst footer = new Footer(footerElement);\n// \tfooter.init();\n// }\n\n"],
+-  "mappings": "MAAO,IAAMA,EAAN,KAAsB,CAK5B,YAAYC,EAAkB,CAS9B,yBAAuBC,GAAyC,CAC/DA,EAAQ,QAASC,GAAU,CACtBA,EAAM,QAAU,KAAK,SACxB,SAAS,KAAK,UAAU,OAAO,YAAaA,EAAM,cAAc,CAElE,CAAC,CACF,EAdC,KAAK,QAAUF,CAChB,CAEA,MAAO,CACN,KAAK,sBAAwB,IAAI,qBAAqB,KAAK,mBAAmB,EAC9E,KAAK,sBAAsB,QAAQ,KAAK,OAAO,CAChD,CAUD,ECpBA,IAAMG,EAAyB,SAAS,cAAc,oBAAoB,EACtEA,GACqB,IAAIC,EAAgBD,CAAsB,EAClD,KAAK",
+-  "names": ["HomepageContent", "element", "entries", "entry", "homepageContentElement", "HomepageContent"]
++  "sources": ["../../../src/ts/_components/content.ts", "../../../src/ts/main.ts"],
++  "sourcesContent": ["export class Content {\n\n\telement!: Element;\n\t_intersectionObserver?: IntersectionObserver;\n\n\tconstructor(element: Element) {\n\t\tthis.element = element;\n\t}\n\n\tinit() {\n\t\tthis._intersectionObserver = new IntersectionObserver(this._handleIntersection);\n\t\tthis._intersectionObserver.observe(this.element);\n\t}\n\n\t_handleIntersection = (entries: IntersectionObserverEntry[]) => {\n\t\tentries.forEach((entry) => {\n\t\t\tif (entry.target == this.element) {\n\t\t\t\tdocument.body.classList.toggle('is-dimmed', entry.isIntersecting);\n\t\t\t}\n\t\t});\n\t}\n\n}", "import { Content } from './_components/content';\n\nconst contentElement = document.querySelector('.Content--home')\nif (contentElement) {\n\tconst content = new Content(contentElement);\n\tcontent.init();\n}"],
++  "mappings": "MAAO,IAAMA,EAAN,KAAc,CAKpB,YAAYC,EAAkB,CAS9B,yBAAuBC,GAAyC,CAC/DA,EAAQ,QAASC,GAAU,CACtBA,EAAM,QAAU,KAAK,SACxB,SAAS,KAAK,UAAU,OAAO,YAAaA,EAAM,cAAc,CAElE,CAAC,CACF,EAdC,KAAK,QAAUF,CAChB,CAEA,MAAO,CACN,KAAK,sBAAwB,IAAI,qBAAqB,KAAK,mBAAmB,EAC9E,KAAK,sBAAsB,QAAQ,KAAK,OAAO,CAChD,CAUD,ECpBA,IAAMG,EAAiB,SAAS,cAAc,gBAAgB,EAC1DA,GACa,IAAIC,EAAQD,CAAc,EAClC,KAAK",
++  "names": ["Content", "element", "entries", "entry", "contentElement", "Content"]
+ }
+diff --git a/web/site/blueprints/blocks/exhibitors.yml b/web/site/blueprints/blocks/exhibitors.yml
+deleted file mode 100644
+index bc32543..0000000
+--- a/web/site/blueprints/blocks/exhibitors.yml
++++ /dev/null
+@@ -1,9 +0,0 @@
+-name: Exhibitors
+-icon: text
+-wysiwyg: true
+-preview: text
+-fields:
+-  exhibitors:
+-    type: writer
+-    nodes: false
+-    placeholder: field.blocks.exhibitors.placeholder
+diff --git a/web/site/blueprints/blocks/heading.yml b/web/site/blueprints/blocks/heading.yml
+deleted file mode 100644
+index 9834425..0000000
+--- a/web/site/blueprints/blocks/heading.yml
++++ /dev/null
+@@ -1,21 +0,0 @@
+-name: field.blocks.heading.name
+-icon: title
+-wysiwyg: true
+-preview: heading
+-fields:
+-  level:
+-    label: field.blocks.heading.level
+-    type: toggles
+-    empty: false
+-    default: "h3"
+-    labels: false
+-    options:
+-      - value: h3
+-        icon: h3
+-        text: H3
+-  text:
+-    label: field.blocks.heading.text
+-    type: writer
+-    marks: []
+-    inline: true
+-    placeholder: field.blocks.heading.placeholder
+diff --git a/web/site/blueprints/blocks/table.yml b/web/site/blueprints/blocks/table.yml
+deleted file mode 100644
+index 7169158..0000000
+--- a/web/site/blueprints/blocks/table.yml
++++ /dev/null
+@@ -1,18 +0,0 @@
+-name: Hours
+-icon: menu
+-preview: table
+-fields:
+-  rows:
+-    type: structure
+-    columns:
+-      title:
+-        width: 1/2
+-      description:
+-        width: 1/2
+-    fields:
+-      title:
+-        type: text
+-      description:
+-        type: writer
+-        nodes: false
+-        marks: [italic, link]
+diff --git a/web/site/blueprints/blocks/text.yml b/web/site/blueprints/blocks/text.yml
+deleted file mode 100644
+index 4be9100..0000000
+--- a/web/site/blueprints/blocks/text.yml
++++ /dev/null
+@@ -1,11 +0,0 @@
+-name: field.blocks.text.name
+-icon: text
+-wysiwyg: true
+-preview: text
+-label: Text
+-fields:
+-  text:
+-    type: writer
+-    nodes: false
+-    marks: [italic, link]
+-    placeholder: field.blocks.text.placeholder
+diff --git a/web/site/blueprints/pages/about.yml b/web/site/blueprints/pages/about.yml
+index 7572dba..044fa01 100644
+--- a/web/site/blueprints/pages/about.yml
++++ b/web/site/blueprints/pages/about.yml
+@@ -2,21 +2,61 @@ title: About Page
+ 
+ fields:
+ 
+-  header_text:
+-    label: Header Text
+-    type: writer
+-    nodes: false
+-    marks: []
+-
+-  faq:
+-    label: FAQ
+-    type: structure
+-    fields:
+-      question:
+-        type: writer
+-        nodes: false
+-        marks: []
+-      answer:
+-        type: writer
+-        nodes: false
+-        marks: [italic, link]
++  body:
++    label: Body
++    type: blocks
++    fieldsets:
++      body_text:
++        label: Body Text
++        fields:
++          text:
++            type: writer
++            nodes: false
++            marks: [italic, link]
++      header_text:
++        label: Header Text
++        fields:
++          text:
++            type: writer
++            nodes: false
++            marks: []
++      header_figure:
++        label: Header Figure
++        fields:
++          title:
++            type: writer
++            nodes: false
++            marks: []
++          image:
++            type: files
++            multiple: false
++          text:
++            type: writer
++            nodes: false
++            marks: []
++      labeled_description:
++        label: Labeled Description
++        fields:
++          label:
++            type: text
++          description:
++            type: writer
++            nodes: false
++            marks: [italic, link]
++      faq:
++        label: FAQ
++        fields:
++          title:
++            type: text
++          faq:
++            label: FAQ
++            type: structure
++            fields:
++              question:
++                type: writer
++                nodes: false
++                marks: []
++              answer:
++                type: writer
++                nodes: false
++                marks: [italic,link]
+diff --git a/web/site/blueprints/pages/default.yml b/web/site/blueprints/pages/default.yml
+deleted file mode 100644
+index 9ef7723..0000000
+--- a/web/site/blueprints/pages/default.yml
++++ /dev/null
+@@ -1,84 +0,0 @@
+-title: Home Page
+-
+-fields:
+-
+-  headers:
+-    label: Headers
+-    type: structure
+-    fields:
+-      desktop_image:
+-        label: Desktop Image
+-        type: files
+-        multiple: false
+-      mobile_image:
+-        label: Mobile Image
+-        type: files
+-        multiple: false
+-      color:
+-        label: Color
+-        type: color
+-      x_offset:
+-        label: X-Offset
+-        type: number
+-        step: .01
+-      y_offset:
+-        label: Y-Offset
+-        type: number
+-        step: .01
+-      caption:
+-        type: text
+-
+-  body:
+-    label: Body
+-    type: blocks
+-    fieldsets:
+-      body_text:
+-        label: Body Text
+-        fields:
+-          text:
+-            type: writer
+-            nodes: false
+-            marks: [italic, link]
+-      header_text:
+-        label: Header Text
+-        fields:
+-          text:
+-            type: writer
+-            nodes: false
+-            marks: []
+-      header_figure:
+-        label: Header Figure
+-        fields:
+-          title:
+-            type: writer
+-            nodes: false
+-            marks: []
+-          image:
+-            type: files
+-            multiple: false
+-          text:
+-            type: writer
+-            nodes: false
+-            marks: []
+-      labeled_description:
+-        label: Labeled Description
+-        fields:
+-          label:
+-            type: text
+-          description:
+-            type: writer
+-            nodes: false
+-            marks: [italic, link]
+-      featured_exhibitors:
+-        label: Featured Exhibitors
+-        fields:
+-          exhibitors:
+-            type: structure
+-            fields:
+-              image:
+-                type: files
+-                multiple: false
+-              name:
+-                type: text
+-              link:
+-                type: link
+diff --git a/web/site/blueprints/site.yml b/web/site/blueprints/site.yml
+index e72d17d..9bca95b 100644
+--- a/web/site/blueprints/site.yml
++++ b/web/site/blueprints/site.yml
+@@ -3,11 +3,14 @@ title: Site
+ sections:
+   pages:
+     type: pages
+-    template: ['default','about','exhibitors']
++    template: ['home','about','exhibitors']
+ 
+   fields:
+     type: fields
+     fields:
++      color:
++        label: Color
++        type: color
+       footer_header:
+         label: Footer Header
+         type: writer
+@@ -26,19 +29,3 @@ sections:
+                 type: writer
+                 nodes: false
+                 marks: [italic, link]
+-      footer_text:
+-        label: Footer Text
+-        type: writer
+-        nodes: false
+-        marks: []
+-        width: 1/2
+-      footer_links:
+-        label: Footer Links
+-        type: structure
+-        fields:
+-          label:
+-            type: text
+-          link:
+-            type: link
+-        width: 1/2
+-
+diff --git a/web/site/plugins/blocks/index.js b/web/site/plugins/blocks/index.js
+index ed2b7d7..55ac02e 100644
+--- a/web/site/plugins/blocks/index.js
++++ b/web/site/plugins/blocks/index.js
+@@ -105,5 +105,29 @@ panel.plugin("afternoon-light/blocks", {
+ 				/>
+ 			</block-wrapper>
+ 		`,
++		faq: `
++			<block-wrapper :fieldset="{ icon: 'text', name: 'FAQ' }">
++				<k-grid style="gap: var(--spacing-4); --columns: 1">
++					<k-text-field
++						label="Title"
++						:value="content.title"
++						@input="update({ title: $event })"
++					/>
++					<k-structure-field
++						label="FAQ"
++						:fields="{
++							question: { label: 'Question', type: 'writer' },
++							answer: { label: 'Answer', type: 'writer' },
++						}"
++						:columns="{
++							question: { label: 'Question', width: '1/2' },
++							answer: { label: 'Answer', width: '1/2' },
++						}"
++						:value="content.faq"
++						@input="update({ faq: $event })"
++					/>
++				</k-grid>
++			</block-wrapper>
++		`,
+ 	},
+ });
+diff --git a/web/site/snippets/_components/nav.php b/web/site/snippets/_components/nav.php
+index 7cd6cba..a8ab358 100644
+--- a/web/site/snippets/_components/nav.php
++++ b/web/site/snippets/_components/nav.php
+@@ -1,21 +1,38 @@
+ <nav class="MainNav">
+ 	<details class="MainNav-details">
+-		<summary class="MainNav-summary">Menu</summary>
++		<summary class="MainNav-summary">
++			<span class="MainNav-summaryText MainNav-summaryText--desktop">
++				Menu
++			</span>
++			<span class="MainNav-summaryText MainNav-summaryText--mobile">
++				☰
++			</span>
++		</summary>
+ 		<ul class="MainNav-list">
+ 			<li class="MainNav-item">
+-				<a href="">Tickets</a>
++				<a href="/">Home</a>
+ 			</li>
+ 			<li class="MainNav-item">
+-				<a href="#">Exhibitors</a>
++				<a href="/exhibitors">Exhibitors</a>
+ 			</li>
+ 			<li class="MainNav-item">
+-				<a href="">Visit</a>
++				<a href="/about">About</a>
+ 			</li>
+ 			<li class="MainNav-item">
+-				<a href="">About</a>
++				<a href="">Tickets</a>
+ 			</li>
+ 		</ul>
+ 	</details>
++	<?php if ($page->title() != 'Home'): ?>
++		<div class="MainNav-item MainNav-item--back">
++			<span class="MainNav-itemText MainNav-itemText--desktop">
++				<a href="/">Back</a>
++			</span>
++			<span class="MainNav-itemText MainNav-itemText--mobile">
++				<a href="/">←</a>
++			</span>
++		</div>
++	<?php endif; ?>
+ 	<footer class="Footer">
+ 		<div class="Footer-columns">
+ 			<?php foreach ($site->footer_columns()->toBlocks() as $footerColumn): ?>
+diff --git a/web/site/snippets/_layout/_layout-footer.php b/web/site/snippets/_layout/_layout-footer.php
+index a3b33ec..c02b76c 100644
+--- a/web/site/snippets/_layout/_layout-footer.php
++++ b/web/site/snippets/_layout/_layout-footer.php
+@@ -2,15 +2,13 @@
+ 
+ <footer class="Footer">
+ 
+-	<header class="Footer-header">
+-		<header class="Header">
+-			<div class="Header-text">
+-				<?= $site->footer_header() ?>
+-			</div>
+-			<div class="Header-shadow" aria-hidden="true">
+-				<?= $site->footer_header() ?>
+-			</div>
+-		</header>
++	<header class="Header Header--footer">
++		<div class="Header-text">
++			<?= $site->footer_header() ?>
++		</div>
++		<div class="Header-shadow" aria-hidden="true">
++			<?= $site->footer_header() ?>
++		</div>
+ 	</header>
+ 
+ 	<div class="Footer-columns">
+diff --git a/web/site/templates/default.php b/web/site/templates/default.php
+deleted file mode 100644
+index 8c834ce..0000000
+--- a/web/site/templates/default.php
++++ /dev/null
+@@ -1,46 +0,0 @@
+-<?= snippet('_layout/_layout-header'); ?>
+-
+-<?php $headers = $page->headers()->toStructure()->shuffle() ?>
+-<?php $header = $headers->first() ?>
+-<?php $mobile_header_image = $header->mobile_image()->toFiles()->first() ?>
+-<?php $desktop_header_image = $header->desktop_image()->toFiles()->first() ?>
+-<?php $blocks = $page->body()->toBlocks() ?>
+-
+-
+-<style>
+-	html {
+-		--theme-color: <?= $header->color() ?>; 
+-		--x-offset: <?= $header->x_offset() ?>em; 
+-		--y-offset: <?= $header->y_offset() ?>em;
+-	}
+-	body {
+-		&::before {
+-			background-image: url('<?= $mobile_header_image->url() ?>');
+-
+-			@media (min-width: 600px) {
+-				background-image: url('<?= $desktop_header_image->url() ?>');
+-			}
+-		}
+-	}
+-</style>
+-
+-<?= snippet('_components/nav'); ?>
+-
+-<header class="Header Header--main">
+-	<div class="Header-text">
+-		<h1>Afternoon Light<br>Design Fair</h1>
+-		<p>May 16–19, 2026<br>NYC</p>
+-	</div>
+-	<div class="Header-shadow" aria-hidden="true">
+-		<div>Afternoon Light<br>Design Fair</div>
+-		<div>May 16–19, 2026<br>NYC</div>
+-	</div>
+-</header>
+-
+-<section class="Content Content--homepage">
+-	<?php foreach ($blocks as $block): ?>
+-		<?= $block ?>
+-	<?php endforeach; ?>
+-</section>
+-
+-<?= snippet('_layout/_layout-footer'); ?>
+\ No newline at end of file
+diff --git a/web/site/templates/home.php b/web/site/templates/home.php
+index 816d0aa..bb7ff22 100644
+--- a/web/site/templates/home.php
++++ b/web/site/templates/home.php
+@@ -1,66 +1,45 @@
+ <?= snippet('_layout/_layout-header'); ?>
+ 
+-<?php $page = $site->pages()->template('splash')->first() ?>
+-<?php $headers = $page->header()->toStructure()->shuffle() ?>
++<?php $headers = $page->headers()->toStructure()->shuffle() ?>
+ <?php $header = $headers->first() ?>
+-<?php $mobile_image = $header->mobile_image()->toFiles()->first() ?>
+-<?php $desktop_image = $header->desktop_image()->toFiles()->first() ?>
+-<?php $hours = $page->hours()->toStructure() ?>
++<?php $mobile_header_image = $header->mobile_image()->toFiles()->first() ?>
++<?php $desktop_header_image = $header->desktop_image()->toFiles()->first() ?>
+ <?php $blocks = $page->body()->toBlocks() ?>
+- 
+-<view-switcher 
+-	headers='<?= $page->header()->toStructure()->toJson() ?>' 
+-	files='<?= $page->files()->toJson() ?>' 
+-	style="
++
++<style>
++	html {
+ 		--theme-color: <?= $header->color() ?>; 
+ 		--x-offset: <?= $header->x_offset() ?>em; 
+-		--y-offset: <?= $header->y_offset() ?>em;">
+-
+-	<style>
+-		html {
+-			background-image: url('<?= $mobile_image->url() ?>');
+-			background-size: cover;
+-			background-position: center;
++		--y-offset: <?= $header->y_offset() ?>em;
++	}
++	body {
++		&::before {
++			background-image: url('<?= $mobile_header_image->url() ?>');
+ 
+ 			@media (min-width: 600px) {
+-				background-image: url('<?= $desktop_image->url() ?>');
++				background-image: url('<?= $desktop_header_image->url() ?>');
+ 			}
+-
+ 		}
+-	</style>
+-
+-	<header class="Header Header--main">
+-		<div class="Header-text">
+-			<h1>Afternoon Light<br>Design Fair</h1>
+-			<h2>May 16–19, 2026<br>NYC</h2>
+-		</div>
+-		<div class="Header-shadow">
+-			<div>Afternoon Light<br>Design Fair</div>
+-			<div>May 16–19, 2026<br>NYC</div>
+-		</div>
+-	</header>
+-
++	}
++</style>
++
++<?= snippet('_components/nav'); ?>
++
++<header class="Header Header--home">
++	<div class="Header-text">
++		<h1>Afternoon Light<br>Design Fair</h1>
++		<p>16–19 May, 2026<br>NYC</p>
++	</div>
++	<div class="Header-shadow" aria-hidden="true">
++		<div>Afternoon Light<br>Design Fair</div>
++		<div>16–19 May, 2026<br>NYC</div>
++	</div>
++</header>
++
++<section class="Content Content--home">
+ 	<?php foreach ($blocks as $block): ?>
+ 		<?= $block ?>
+ 	<?php endforeach; ?>
+-
+-	<section class="Block Block--form">
+-		<Form method="GET" action="https://afternoonlight.artsvp.com/a57962?link=alweb" target="_blank" class="Form--register">
+-			<button class="Form-button">Get Tickets</button>
+-		</Form>
+-	</section>
+-
+-	<footer class="Footer">
+-		
+-		<div class="Footer-column">
+-			© 2026 Afternoon Light <a href="https://instagram.com/afternoonlight" target="_blank">Instagram</a> <a href="mailto:hi@afternoonlight.com">Contact</a> <a href="https://20a4045b.sibforms.com/serve/MUIFAMFhR8jPwKzEfSTnE4IoPmemhCo6Y0ISGg34DVTC6c-CdZC0UO3VqaQbbyKAB-I67X7vWhNkN6v8Bp69VzhVtmiiaSrVDXnp2yllmigbGUssTNaoSrSYeTVET_ohJ-FKDawXjmMkP52QgiooB_nbB14j8vmy1qKA3DoatD1NGd_M8hmlfu3HxVn5CNNILPF6xRsO8RW4NQBg3A==">Subscribe</a>
+-		</div>
+-		<div class="Footer-column">
+-			Pictured: <?= $header->caption() ?>.
+-		</div>
+-		
+-	</footer>
+-
+-</view-switcher>
++</section>
+ 
+ <?= snippet('_layout/_layout-footer'); ?>
+\ No newline at end of file

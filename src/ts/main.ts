@@ -1,16 +1,7 @@
-import { HomepageContent } from './_components/homepage-content';
+import { Content } from './_components/content';
 
-const homepageContentElement = document.querySelector('.Content--homepage')
-if (homepageContentElement) {
-	const homepageContent = new HomepageContent(homepageContentElement);
-	homepageContent.init();
+const contentElement = document.querySelector('.Content--home')
+if (contentElement) {
+	const content = new Content(contentElement);
+	content.init();
 }
-
-// import { Footer } from './_components/footer';
-
-// const footerElement = document.querySelector('.Footer')
-// if (footerElement) {
-// 	const footer = new Footer(footerElement);
-// 	footer.init();
-// }
-

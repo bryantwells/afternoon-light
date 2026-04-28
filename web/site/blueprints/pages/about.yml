@@ -2,21 +2,61 @@ title: About Page
 
 fields:
 
-  header_text:
-    label: Header Text
-    type: writer
-    nodes: false
-    marks: []
-
-  faq:
-    label: FAQ
-    type: structure
-    fields:
-      question:
-        type: writer
-        nodes: false
-        marks: []
-      answer:
-        type: writer
-        nodes: false
-        marks: [italic, link]
+  body:
+    label: Body
+    type: blocks
+    fieldsets:
+      body_text:
+        label: Body Text
+        fields:
+          text:
+            type: writer
+            nodes: false
+            marks: [italic, link]
+      header_text:
+        label: Header Text
+        fields:
+          text:
+            type: writer
+            nodes: false
+            marks: []
+      header_figure:
+        label: Header Figure
+        fields:
+          title:
+            type: writer
+            nodes: false
+            marks: []
+          image:
+            type: files
+            multiple: false
+          text:
+            type: writer
+            nodes: false
+            marks: []
+      labeled_description:
+        label: Labeled Description
+        fields:
+          label:
+            type: text
+          description:
+            type: writer
+            nodes: false
+            marks: [italic, link]
+      faq:
+        label: FAQ
+        fields:
+          title:
+            type: text
+          faq:
+            label: FAQ
+            type: structure
+            fields:
+              question:
+                type: writer
+                nodes: false
+                marks: []
+              answer:
+                type: writer
+                nodes: false
+                marks: [italic,link]
