@@ -19,7 +19,7 @@
 				<a href="/about">About</a>
 			</li>
 			<li class="MainNav-item">
-				<a href="">Tickets</a>
+				<a href="https://afternoonlight.artsvp.com/a57962">Tickets</a>
 			</li>
 		</ul>
 	</details>
