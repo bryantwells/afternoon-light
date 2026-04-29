@@ -1,4 +1,14 @@
 <nav class="MainNav">
+	<?php if ($page->title() != 'Home'): ?>
+		<div class="MainNav-item MainNav-item--back">
+			<span class="MainNav-itemText MainNav-itemText--desktop">
+				<a href="/">Back</a>
+			</span>
+			<span class="MainNav-itemText MainNav-itemText--mobile">
+				<a href="/">←</a>
+			</span>
+		</div>
+	<?php endif; ?>
 	<details class="MainNav-details">
 		<summary class="MainNav-summary">
 			<span class="MainNav-summaryText MainNav-summaryText--desktop">
@@ -27,16 +37,7 @@
 			</li>
 		</ul>
 	</details>
-	<?php if ($page->title() != 'Home'): ?>
-		<div class="MainNav-item MainNav-item--back">
-			<span class="MainNav-itemText MainNav-itemText--desktop">
-				<a href="/">Back</a>
-			</span>
-			<span class="MainNav-itemText MainNav-itemText--mobile">
-				<a href="/">←</a>
-			</span>
-		</div>
-	<?php endif; ?>
+	
 	<footer class="Footer">
 		<div class="Footer-columns">
 			<?php foreach ($site->footer_columns()->toBlocks() as $footerColumn): ?>

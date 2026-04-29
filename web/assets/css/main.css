@@ -336,6 +336,7 @@ body.is-dimmed .Header-shadow {
 }
 .MainNav-details[open] + .Footer {
   display: block;
+  color: white;
 }
 
 .Header {
