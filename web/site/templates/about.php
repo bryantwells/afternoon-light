@@ -14,7 +14,7 @@
 
 <header class="Header Header--page">
 	<div class="Header-text">
-		<h1>Afternoon Light: <?= $page->title() ?></h1>
+		<h1><?= $page->title() ?></h1>
 	</div>
 </header>
 

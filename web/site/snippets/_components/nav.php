@@ -5,7 +5,11 @@
 				Menu
 			</span>
 			<span class="MainNav-summaryText MainNav-summaryText--mobile">
-				☰
+				<svg viewbox="0 0 100 80">
+					<rect x="0" y="0" width="100" height="10"/>
+					<rect x="0" y="35" width="100" height="10"/>
+					<rect x="0" y="70" width="100" height="10"/>
+				</svg>
 			</span>
 		</summary>
 		<ul class="MainNav-list">
@@ -16,10 +20,10 @@
 				<a href="/exhibitors">Exhibitors</a>
 			</li>
 			<li class="MainNav-item">
-				<a href="/about">About</a>
+				<a href="/about">About & FAQ</a>
 			</li>
 			<li class="MainNav-item">
-				<a href="https://afternoonlight.artsvp.com/a57962">Tickets</a>
+				<a href="https://afternoonlight.artsvp.com/a57962">Get Tickets</a>
 			</li>
 		</ul>
 	</details>

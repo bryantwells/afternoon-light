@@ -21,18 +21,29 @@
 			}
 		}
 	}
+	.MainNav svg {
+		fill: white;
+	}
 </style>
 
 <?= snippet('_components/nav'); ?>
 
 <header class="Header Header--home">
 	<div class="Header-text">
-		<h1>Afternoon Light<br>Design Fair</h1>
-		<p>16–19 May, 2026<br>NYC</p>
+		<h1>
+			Afternoon Light<br>
+			Design Fair<br>
+			16–19 May, 2026<br>
+			NYC
+		</h1>
 	</div>
 	<div class="Header-shadow" aria-hidden="true">
-		<div>Afternoon Light<br>Design Fair</div>
-		<div>16–19 May, 2026<br>NYC</div>
+		<div>
+			Afternoon Light<br>
+			Design Fair<br>
+			16–19 May, 2026<br>
+			NYC
+		</div>
 	</div>
 </header>
 
