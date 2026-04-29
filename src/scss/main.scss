@@ -482,17 +482,12 @@ body {
 	gap: var(--space-xs);
 
 	&--register {
-		padding: var(--space-md) 0;
-		margin: var(--space-lg) 0;
-		text-align: center;
+		display: flex;
+		justify-content: end;
 
 		.Form-button {
-			padding: 0.75rem 1.5rem;
-			min-width: 33%;
-
-			@media (max-width: 800px) {
-				min-width: 50%;
-			}
+			padding: 0.5rem 1rem;
+			min-width: 100%;
 		}
 	}
 }
@@ -506,17 +501,15 @@ body {
 	background-color: white;
 	border: 2px solid white;
 	padding: 0.25rem 0.5rem;
-	border-radius: 0.25rem;
+	border-radius: var(--radius);
 	max-width: 60ch;
 	box-shadow: inset 0.25rem 0.25rem 1rem rgba(0,0,0,0.25);
 	color: var(--theme-color);
 }
 
 .Form-button {
-	border: 2px solid white;
+	border: 1px solid currentColor;
 	padding: 0.25rem 0.5rem;
-	background: linear-gradient(white 50%, rgb(220,220,220));
-	color: var(--theme-color);
 	border-radius: 0.25rem;
 	cursor: pointer;
 }
@@ -548,6 +541,8 @@ body {
 .Footer-columns {
 	display: grid;
 	grid-template-columns: 1fr 1fr;
+	gap: var(--space-sm);
+	align-items: center;
 
 	@media (max-width: 800px) {
 		grid-template-columns: 1fr;

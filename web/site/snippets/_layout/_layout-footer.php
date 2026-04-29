@@ -17,6 +17,11 @@
 				<?= $footerColumn->text() ?>
 			</div>
 		<?php endforeach; ?>
+		<div class="Footer-column">
+			<form method="GET" action="https://afternoonlight.artsvp.com/a57962?link=alweb" target="_blank" class="Form--register">
+				<button class="Form-button">Get Tickets</button>
+			</form>
+		</div>
 	</div>	
 
 </footer>
