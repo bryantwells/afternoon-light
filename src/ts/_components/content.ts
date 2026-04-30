@@ -16,6 +16,8 @@ export class Content {
 		entries.forEach((entry) => {
 			if (entry.target == this.element) {
 				document.body.classList.toggle('is-dimmed', entry.isIntersecting);
+				console.log('x')
+				console.log('')
 			}
 		});
 	}
