@@ -21,11 +21,19 @@ fields:
         label: Mobile Color
         type: color
       desktop_x_offset:
-        label: X-Offset
+        label: Desktop X-Offset
         type: number
         step: .01
       desktop_y_offset:
-        label: Y-Offset
+        label: Desktop Y-Offset
+        type: number
+        step: .01
+      mobile_x_offset:
+        label: Mobile X-Offset
+        type: number
+        step: .01
+      mobile_y_offset:
+        label: Mobile Y-Offset
         type: number
         step: .01
       desktop_caption:
