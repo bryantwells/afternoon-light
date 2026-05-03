@@ -7,8 +7,8 @@ if (contentElement) {
 	content.init();
 }
 
-const exhibitorElement = document.querySelector('.Exhibitor') as HTMLDetailsElement;
-if (exhibitorElement) {
-	const exhibitor = new Exhibitor(exhibitorElement);
-	exhibitor.init();
-}
+([...document.querySelectorAll('.Exhibitor')] as HTMLDetailsElement[])
+	.forEach((el) => {
+		const exhibitor = new Exhibitor(el);
+		exhibitor.init();
+	})
