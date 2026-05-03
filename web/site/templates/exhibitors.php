@@ -21,7 +21,8 @@
 	<div class="Block Block--exhibitors">			
 		<?php foreach ($exhibitors as $exhibitor): ?>
 			<?php $image = $exhibitor->image() ?>
-			<details class="Exhibitor">
+
+			<details class="Exhibitor" id="<?= $exhibitor->slug() ?>">
 				<summary class="Exhibitor-summary">
 					<h2><?= $exhibitor->title() ?></h2>
 					<p><?= $exhibitor->location() ?></p>
@@ -36,6 +37,7 @@
 					</div>
 				</div>
 			</details>
+
 		<?php endforeach; ?>
 	</div>
 </section>

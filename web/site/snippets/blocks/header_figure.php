@@ -10,7 +10,11 @@
 			<p>
 				<?= $block->text() ?>
 			</p>
+			
 		</figcaption>
+		<div class="HeaderFigure-credit">
+			<?= $image->credit() ?>
+		</div>
 	</figure>
 	
 </section>

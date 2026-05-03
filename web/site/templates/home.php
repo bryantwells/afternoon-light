@@ -8,9 +8,15 @@
 
 <style>
 	html {
-		--theme-color: <?= $header->color() ?>; 
-		--x-offset: <?= $header->x_offset() ?>em; 
-		--y-offset: <?= $header->y_offset() ?>em;
+		--theme-color: <?= $header->mobile_color() ?>; 
+		--x-offset: <?= $header->mobile_x_offset() ?>em; 
+		--y-offset: <?= $header->mobile_y_offset() ?>em;
+
+		@media (min-width: 800px) {
+			--theme-color: <?= $header->desktop_color() ?>; 
+			--x-offset: <?= $header->desktop_x_offset() ?>em; 
+			--y-offset: <?= $header->desktop_y_offset() ?>em;
+		}
 	}
 	body {
 		&::before {

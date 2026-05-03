@@ -14,18 +14,23 @@ fields:
         label: Mobile Image
         type: files
         multiple: false
-      color:
-        label: Color
+      desktop_color:
+        label: Desktop Color
         type: color
-      x_offset:
+      mobile_color:
+        label: Mobile Color
+        type: color
+      desktop_x_offset:
         label: X-Offset
         type: number
         step: .01
-      y_offset:
+      desktop_y_offset:
         label: Y-Offset
         type: number
         step: .01
-      caption:
+      desktop_caption:
+        type: text
+      mobile_caption:
         type: text
 
   body:

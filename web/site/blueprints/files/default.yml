@@ -1,0 +1,4 @@
+fields:
+  credit:
+    label: Credit
+    type: text

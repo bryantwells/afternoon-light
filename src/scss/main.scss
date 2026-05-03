@@ -362,7 +362,7 @@ body {
 }
 
 .Exhibitor-summary {
-	padding: var(--space-xs) 0;
+	padding-bottom: var(--space-xs);
 	border-bottom: 1px solid var(--theme-color);
 	cursor: pointer;
 	user-select: none;
@@ -412,6 +412,16 @@ body {
 
 .HeaderFigure-caption {
 	position: relative;
+}
+
+.HeaderFigure-credit {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	font-size: var(--font-size-sm);
+	padding: var(--space-sm);
+	text-align: left;
 }
 
 // FEATURED EXHIBITORS
@@ -508,7 +518,9 @@ body {
 }
 
 .Form-button {
-	border: 1px solid currentColor;
+	background: white;
+	border: 1px solid var(--theme-color);
+	color: var(--theme-color);
 	padding: 0.25rem 0.5rem;
 	border-radius: 0.25rem;
 	cursor: pointer;
