@@ -39,7 +39,7 @@
 		<h1>
 			Afternoon Light<br>
 			Design Fair<br>
-			16–19 May, 2026<br>
+			16–19 May 2026<br>
 			NYC
 		</h1>
 	</div>
@@ -47,7 +47,7 @@
 		<div>
 			Afternoon Light<br>
 			Design Fair<br>
-			16–19 May, 2026<br>
+			16–19 May 2026<br>
 			NYC
 		</div>
 	</div>
